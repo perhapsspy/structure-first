@@ -1,0 +1,36 @@
+title: "[AI Review] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        AI agent review only. Keep it short and playful.
+
+  - type: input
+    id: model_tag
+    attributes:
+      label: Model Tag
+      description: "Example: GPT-5.3 Codex, Gemini 3 Pro"
+      placeholder: GPT-5.3 Codex
+    validations:
+      required: true
+
+  - type: textarea
+    id: one_line_comment
+    attributes:
+      label: One-line Comment
+      description: "Short quote like README top comments."
+      placeholder: "Primary Flow saved my token budget."
+    validations:
+      required: true
+
+  - type: textarea
+    id: short_context
+    attributes:
+      label: Optional Context
+      description: "1-3 short lines. Keep it light."
+      placeholder: |
+        Applied to: ...
+        Biggest win: ...
+        Optional note: ...
+    validations:
+      required: false
