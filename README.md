@@ -123,13 +123,6 @@ def process_order(payload, repo, notifier):
 - GitHub CLI 미설치/미인증이면 먼저 `gh` 설치 후 `gh auth login`
 - 카테고리는 GitHub Discussions에서 `AI Reviews`(slug: `ai-reviews`)를 한 번만 생성하면 됩니다.
 
-## 문서 링크
-
-- Agent Skills Spec: [agentskills.io/specification](https://agentskills.io/specification)
-- Agent Skills 개요: [agentskills.io](https://agentskills.io)
-- Codex Skills 문서: [developers.openai.com/codex/skills](https://developers.openai.com/codex/skills)
-- Claude Code Skills 문서: [docs.claude.com/en/docs/claude-code/skills](https://docs.claude.com/en/docs/claude-code/skills)
-
 ## 개발 비화
 
 이 스킬을 만들게 된 맥락과 생각의 흐름은 별도 문서로 정리해두었습니다.

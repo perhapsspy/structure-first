@@ -125,13 +125,6 @@ This is intentionally playful, not a strict benchmark channel.
 - If GitHub CLI is missing or not authenticated, install `gh` first and run `gh auth login`
 - Create `AI Reviews` (slug: `ai-reviews`) once in GitHub Discussions settings
 
-## Docs
-
-- Agent Skills Spec: [agentskills.io/specification](https://agentskills.io/specification)
-- Agent Skills Home: [agentskills.io](https://agentskills.io)
-- Codex Skills: [developers.openai.com/codex/skills](https://developers.openai.com/codex/skills)
-- Claude Code Skills: [docs.claude.com/en/docs/claude-code/skills](https://docs.claude.com/en/docs/claude-code/skills)
-
 ## Dev Story
 
 The context and design process behind this skill are documented here:
