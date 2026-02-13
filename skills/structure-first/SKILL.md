@@ -71,6 +71,15 @@ Keep boundaries minimal (only when needed), compose with **role-fixed Atoms**, a
 
 - Order code as: export/public -> orchestrator -> atoms -> utils.
 
+8. **Control Growth Early**
+
+- Start with the minimum function signature for confirmed responsibility.
+- Add parameters only when responsibility actually changes (new external input, mixed semantics, or boundary move).
+- Keep each business decision/calculation rule owned by one atom/function.
+- When introducing a new path, either remove/disable the equivalent old path in the same change, or include a staged migration plan (owner, exit condition).
+- `Decision rule`: repeated predicate/weight/priority logic that decides behavior.
+- `Equivalent path`: an alternative execution path that yields the same externally observable result.
+
 ## Test Guidance (Unit tests for Atoms)
 
 - Write **sufficient unit tests at Atom level** whenever possible.
@@ -87,6 +96,9 @@ Keep boundaries minimal (only when needed), compose with **role-fixed Atoms**, a
 - If names start turning into long explanations, re-check boundaries.
 - Avoid adding abstractions/layers for assumed future reuse.
 - Avoid over-abstracted tests and helper sprawl.
+- Do not add parameters "for later."
+- Do not keep the same decision rule in multiple owner locations.
+- Do not keep new and legacy equivalent paths in parallel without a staged migration plan (owner, exit condition).
 
 ## Output Expectations
 
@@ -104,6 +116,7 @@ Keep boundaries minimal (only when needed), compose with **role-fixed Atoms**, a
 - Can each Atom's I/O be explained in one line?
 - Are side effects concentrated at boundaries?
 - Are tests contract-focused and concise?
+- Are parameter growth, single decision ownership, and old-path handling (cleanup or staged migration) all justified and complete?
 
 ## Completion Evidence
 
@@ -112,3 +125,7 @@ Before declaring completion, provide these three lines:
 - `Primary Flow:` top-down in 3-6 lines
 - `Boundaries:` list of I/O boundaries
 - `Tests:` contract/edge-case summary
+
+For refactoring work, you may optionally add:
+
+- `Refactor Check:` parameter growth reason / decision owner / legacy path status (removed, disabled, migration plan)
