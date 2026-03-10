@@ -7,3 +7,10 @@ __pycache__/
 
 # Local playgrounds
 tmp/*
+
+# Local multi-agent run artifacts
+.codex-multi-agent-runs/
+
+# Disposable dogfood run outputs
+docs/dogfood/runs/*
+!docs/dogfood/runs/.gitkeep
