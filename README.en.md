@@ -75,6 +75,11 @@ $structure-first-review write a short review post
 - Dev story: [English](docs/ORIGIN.en.md) | [Korean](docs/ORIGIN.md)
 - Background notes: [English](docs/INSIGHTS.en.md) | [Korean](docs/INSIGHTS.md)
 
+## Good Skills to Use Together
+
+- [`structure-first`](https://github.com/perhapsspy/structure-first): organize code so the primary success path reads top-down
+- [`project-context`](https://github.com/perhapsspy/project-context): keep working context in the repo so later sessions can resume quickly
+
 ## Support
 
 [![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://www.buymeacoffee.com/perhapsspy)
