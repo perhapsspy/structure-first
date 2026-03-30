@@ -20,6 +20,8 @@ Keep boundaries minimal (only when needed), compose with **Atoms** (small units 
 
 ## When to Use
 
+- Apply this skill primarily to **real structure work on code**: structural refactors, code-shape changes, boundary simplification, decision-ownership cleanup, or structure-focused code review.
+- For non-implementation tasks, such as change classification, commit planning, or scope analysis, use it only as an internal thinking frame. Do not force a structure-first response template.
 - When code does not read naturally from top to bottom
 - When function/module splitting becomes excessive and utilities start to spread
 - When tests are drifting toward implementation-following patterns
@@ -129,7 +131,11 @@ Keep boundaries minimal (only when needed), compose with **Atoms** (small units 
 
 ## Completion Evidence
 
-Before declaring structure work complete, provide these four lines:
+Use this format only when it materially helps explain actual code structure work or a structure-focused review.
+Do not treat it as the default user-facing output, even for refactors.
+For non-implementation tasks, keep the response natural unless the user explicitly asks for structure-first formatting.
+
+When the format is useful, provide these four lines:
 
 - `Current Unit:` function/file | module/use case | capability/subsystem
 - `Primary Flow:` top-down in 3-6 lines
