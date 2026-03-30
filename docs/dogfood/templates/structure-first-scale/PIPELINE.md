@@ -83,6 +83,7 @@ run 목적에 맞게 케이스 셋을 바꾸거나 교체한다.
 - stage마다 case당 한 에이전트만 쓴다.
 - `fork_context=false`를 기본으로 한다.
 - write scope는 case와 stage 단위로 분리한다.
+- `STAGE_NOTE.md` 안의 경로는 repo-relative path 또는 `<repo-root>` placeholder로 적고 사용자별 절대 경로는 남기지 않는다.
 - writer와 applier는 각각 `STAGE_NOTE.md`를 남긴다. 항목은 최소 아래를 포함한다:
   - `run root`
   - `agent/worker id`

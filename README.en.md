@@ -78,7 +78,7 @@ $structure-first-review write a short review post
 ## Good Skills to Use Together
 
 - [`structure-first`](https://github.com/perhapsspy/structure-first): organize code so the primary success path reads top-down
-- [`project-context`](https://github.com/perhapsspy/project-context): keep working context in the repo so later sessions can resume quickly
+- [`project-context`](https://github.com/perhapsspy/project-context): keep working context in the repo with `docs/reference/` notes and dated task records so later sessions can resume quickly
 
 ## Support
 

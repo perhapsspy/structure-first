@@ -4,6 +4,8 @@
 
 이 폴더는 도그푸딩 절차와 템플릿을 정리하는 내부 운영 문서다.
 개별 run은 `docs/dogfood/runs/` 아래에서 만들고 필요할 때만 남긴다.
+지속적으로 재사용할 규칙과 맥락은 `docs/reference/`에, 현재 변경의 진행 상태와 결정은 `docs/tasks/...`에 남긴다.
+개별 run의 `before/after`, `REVIEW`, `FEEDBACK`는 disposable 산출물로 취급한다.
 
 ## Recommended Run Layout
 
@@ -49,6 +51,7 @@ docs/dogfood/runs/<run-name>/
 - `fork_context=false`를 기본으로 해서 대화 문맥 오염을 막는다.
 - write scope는 case와 stage 단위로 분리한다.
 - writer/applier는 항상 `STAGE_NOTE.md`를 남긴다.
+- `STAGE_NOTE.md` 안의 경로는 절대 경로 대신 repo-relative path 또는 `<repo-root>` placeholder로 적는다.
 - stage note에는 최소한 아래 항목을 남긴다.
   - `run root`
   - `agent/worker id`
@@ -77,6 +80,7 @@ docs/dogfood/runs/<run-name>/
 - 한 example만 잘못 생성됐고 skill 문구와는 충돌하지 않으면 `run artifact` 수정
 
 즉, run 결과에서 바로 skill을 고치기보다 먼저 `문제의 owner`를 분리한다.
+run에서 반복적으로 재사용할 판단 기준이 생기면 `docs/reference/`로 옮기고, 이번 변경의 진행/검증 흔적은 `docs/tasks/...`에 남긴다.
 
 ## Success Checks
 

@@ -76,7 +76,7 @@ $structure-first-review 로 후기 작성해
 ## 함께 쓰기 좋은 스킬
 
 - [`structure-first`](https://github.com/perhapsspy/structure-first): 코드의 성공 흐름을 먼저 읽히게 정리
-- [`project-context`](https://github.com/perhapsspy/project-context): 작업 맥락을 저장소 안에 남겨 다음 세션에도 이어가기 쉽게 정리
+- [`project-context`](https://github.com/perhapsspy/project-context): `docs/reference/`와 날짜별 task 기록으로 작업 맥락을 남겨 다음 세션에도 이어가기 쉽게 정리
 
 ## 지원
 
