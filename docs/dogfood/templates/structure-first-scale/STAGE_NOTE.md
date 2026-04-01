@@ -20,6 +20,10 @@
 - copied into:
   - `<absolute path>`
 
+같은 run 안의 다른 stage와 같은 agent/worker label을 재사용했다면:
+
+- why same label was reused: `<reason>`
+
 applier stage는 아래 skill completion evidence 줄을 덧붙인다:
 
 - `Current Unit: ...`

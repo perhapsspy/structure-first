@@ -32,10 +32,13 @@ docs/dogfood/runs/<run-name>/
 3. `CASE.md`에 scale, writer brief, applier goal, reviewer focus를 적는다.
 4. writer stage를 돌린다.
    writer는 skill을 읽지 않고 `before`와 `before/STAGE_NOTE.md`만 만든다.
+   각 case의 writer는 dedicated subagent 하나가 맡고, 같은 agent/worker label을 다른 stage에 재사용하지 않는다.
 5. applier stage를 돌린다.
    applier는 matching `before`와 target skill만 읽고 `after`와 `after/STAGE_NOTE.md`만 만든다.
+   각 case의 applier는 해당 writer와 다른 dedicated subagent가 맡는다.
 6. reviewer stage를 돌린다.
    reviewer는 `before/after`, stage note, current skill, 그리고 회귀 비교가 필요할 때만 이전 feedback을 읽고 `REVIEW.md`, `FEEDBACK.md`를 만든다.
+   reviewer는 어떤 writer/applier와도 다른 subagent여야 한다.
 7. 컴파일/포맷/기본 검증을 돌린다.
 8. 결론을 분류한다.
    skill 문제면 `SKILL.md`와 pair 문서를 수정한다.
@@ -47,6 +50,9 @@ docs/dogfood/runs/<run-name>/
 
 - stage마다 case당 한 에이전트만 쓴다.
 - `fork_context=false`를 기본으로 해서 대화 문맥 오염을 막는다.
+- 같은 case에서 writer/applier를 같은 agent/worker label로 돌리지 않는다.
+- reviewer는 writer/applier와 다른 agent/worker label이어야 한다.
+- 메인 에이전트는 run scaffold와 orchestration까지만 맡고, `before/after/REVIEW/FEEDBACK` 산출물 작성자는 subagent로 분리하는 것을 기본으로 한다.
 - write scope는 case와 stage 단위로 분리한다.
 - writer/applier는 항상 `STAGE_NOTE.md`를 남긴다.
 - stage note에는 최소한 아래 항목을 남긴다.
@@ -61,6 +67,7 @@ docs/dogfood/runs/<run-name>/
   - `blockers/compromises`
 - artifact를 재사용했다면 source run과 copied path를 note에 적는다.
 - reviewer는 stage note를 쓰지 않고, `REVIEW.md`와 `FEEDBACK.md` 안에서 파일 근거를 직접 인용한다.
+- 같은 run에서 동일 agent/worker label이 여러 stage 산출물에 반복되면 provenance 실패로 보고 기본적으로 `pipeline` 이슈로 분류한다.
 
 ## Default Scope
 

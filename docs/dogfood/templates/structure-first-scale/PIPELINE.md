@@ -41,6 +41,7 @@ run 목적에 맞게 케이스 셋을 바꾸거나 교체한다.
   - `structure-first`를 언급하지 않는다
   - 저장소 철학에 맞춰 최적화하지 않는다
   - 관습적인 스타일의 그럴듯한 working code를 만든다
+  - dedicated writer subagent 하나가 case 하나만 맡는다
 
 ### 2. Appliers
 
@@ -60,6 +61,7 @@ run 목적에 맞게 케이스 셋을 바꾸거나 교체한다.
   - `structure-first`를 적용한다
   - 수정 전에 현재 작업 단위를 명시한다
   - 그 단위에서 `Primary Flow`가 읽히도록 필요한 만큼만 개선한다
+  - writer와 다른 dedicated applier subagent가 case 하나만 맡는다
 
 ### 3. Reviewers
 
@@ -77,11 +79,15 @@ run 목적에 맞게 케이스 셋을 바꾸거나 교체한다.
   - stage separation, scale handling, outcome quality를 비교한다
   - 항상 issues/risks first로 쓴다
   - 케이스 근거가 충분할 때만 skill 변경을 제안한다
+  - reviewer subagent는 어떤 writer/applier와도 다른 label을 사용한다
 
 ## Context Hygiene Rules
 
 - stage마다 case당 한 에이전트만 쓴다.
 - `fork_context=false`를 기본으로 한다.
+- 같은 case에서 writer/applier를 같은 agent/worker label로 재사용하지 않는다.
+- reviewer는 writer/applier와 다른 agent/worker label이어야 한다.
+- 메인 에이전트는 scaffold/orchestration까지만 맡고, run artifact(`before/after/REVIEW/FEEDBACK`) 작성은 subagent에 위임하는 것을 기본으로 한다.
 - write scope는 case와 stage 단위로 분리한다.
 - writer와 applier는 각각 `STAGE_NOTE.md`를 남긴다. 항목은 최소 아래를 포함한다:
   - `run root`
@@ -95,6 +101,7 @@ run 목적에 맞게 케이스 셋을 바꾸거나 교체한다.
   - `blockers/compromises`
 - artifact를 재사용했다면 source run과 copied path를 적는다.
 - reviewer는 stage note를 쓰지 않고, `REVIEW.md`와 `FEEDBACK.md` 안에 근거를 직접 인용한다.
+- 같은 run에서 동일 agent/worker label이 여러 stage artifact에 반복되면 provenance 실패로 보고 기본적으로 pipeline issue로 분류한다.
 
 ## Expected Artifacts
 
@@ -113,4 +120,5 @@ run 목적에 맞게 케이스 셋을 바꾸거나 교체한다.
 - 큰 케이스가 function-level over-splitting으로 무너지지 않았는가
 - 모든 케이스의 test status가 명시적인가 (`added` 또는 `deferred` + next stable Atom(s) + contract cases)
 - execution-proof metadata (`agent/worker id`, `fork_context`)가 stage artifact에 보이는가
+- stage owner가 실제로 분리되어 있는가(writer/applier/reviewer label distinct)
 - review finding이 막연한 취향 차이가 아니라 구체적인 guidance 개선으로 이어지는가

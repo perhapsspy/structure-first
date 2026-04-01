@@ -21,7 +21,7 @@ Keep boundaries minimal (only when needed), compose with **Atoms** (small units 
 ## When to Use
 
 - Apply this skill primarily to **real structure work on code**: structural refactors, code-shape changes, boundary simplification, decision-ownership cleanup, or structure-focused code review.
-- For non-implementation tasks, such as change classification, commit planning, or scope analysis, use it only as an internal thinking frame. Do not force a structure-first response template.
+- For tasks that do not directly change implementation, such as change classification, commit planning, or scope analysis, use it only as an internal decision frame. Do not apply a structure-first response template.
 - When code does not read naturally from top to bottom
 - When function/module splitting becomes excessive and utilities start to spread
 - When tests are drifting toward implementation-following patterns
@@ -48,7 +48,7 @@ Keep boundaries minimal (only when needed), compose with **Atoms** (small units 
 - A good result often still reads like `normalize -> load -> decide -> return`.
 - If branch narration starts depending on extra intermediate data structures or helper chains, keep more inline or stop descending.
 - At capability/subsystem scale, name the entrypoint and main orchestrator.
-- Make decision owners explicit so downstream units consume evaluated outcomes instead of re-running policy.
+- Make state and decision owners explicit so downstream units consume evaluated outcomes instead of recomputing policy or rewriting the same externally observable result through another path.
 
 ## Work Routine
 
@@ -92,7 +92,8 @@ Keep boundaries minimal (only when needed), compose with **Atoms** (small units 
 8. **Control Growth**
 
 - Start with the minimum public I/O/signature for the confirmed responsibility; grow it only when responsibility changes (new external input, mixed semantics, or boundary move).
-- Keep each business decision/calculation rule owned by one unit.
+- Default to one owner for each business decision/calculation rule and for each write path that affects the same externally observable result. If coordinating multiple writers is itself the responsibility, make that coordinator explicit.
+- Async boundaries must have one owner for freshness and completion policy, including how freshness conflicts are resolved and how start/finish responsibility is balanced.
 - If rule ownership changes or you introduce an equivalent new path, remove/disable the old one in the same change when possible. Otherwise include a staged migration plan (owner, exit condition).
 - `Decision rule`: repeated predicate/weight/priority logic that decides behavior.
 - `Equivalent path`: an alternative execution path that yields the same externally observable result.
@@ -102,6 +103,7 @@ Keep boundaries minimal (only when needed), compose with **Atoms** (small units 
 - Write **sufficient tests at the most stable Atom level available** whenever possible.
 - Validate **contracts (I/O, invariants, edge cases)** between the current unit and its Atoms/boundaries, not internals.
 - If orchestration or boundary integration is where the risk lives, test the current unit directly.
+- For async or stateful boundaries, test ownership contracts such as stale-result handling, balanced completion, and equivalent-input no-op at the most stable unit that owns them.
 - If tests cannot be added in the current change, say so explicitly and name the next stable Atom(s) plus the required contract cases.
 - Keep test code readable: use `each`/table cases to reduce duplication, allow only small helpers that do not blur structure, and keep each test focused on one core assertion.
 
@@ -114,6 +116,9 @@ Keep boundaries minimal (only when needed), compose with **Atoms** (small units 
 - Avoid over-abstracted tests and helper sprawl.
 - Do not add parameters "for later."
 - Do not keep the same decision rule in multiple owner locations.
+- Do not split the same externally observable result across multiple writer locations unless coordinating those writers is itself the explicit responsibility.
+- Do not synchronously mirror upstream boundary state into local mutable state unless ownership and reset semantics are explicit.
+- Do not create self-feedback loops where a unit reads from an input/update path and writes back into that same path.
 - Do not keep new and legacy equivalent paths in parallel without a staged migration plan (owner, exit condition).
 
 ## Final Gates
@@ -140,7 +145,7 @@ When the format is useful, provide these four lines:
 - `Current Unit:` function/file | module/use case | capability/subsystem
 - `Primary Flow:` top-down in 3-6 lines
 - `Boundaries:` list of I/O boundaries
-- `Tests:` `added ...` or `deferred because ...; next stable Atom(s): ...; required contract cases: ...`
+- `Tests:` `added ...` or `deferred because ...; next stable Atom(s): ...; required contract cases: ...` (include freshness/completion contract when relevant)
 
 For refactoring work where rule ownership changed, also provide:
 
