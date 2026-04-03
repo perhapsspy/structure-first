@@ -45,7 +45,6 @@ Start with `structure-first` first, then add companion skills only when needed.
 
 ### Optional
 
-- `structure-first-review`: optional skill for writing/posting playful reviews
 - `structure-first-docs`: optional companion skill that applies the same structural philosophy to document writing/review
 
 ## Quick Prompt
@@ -60,8 +59,6 @@ $structure-first analyze this code and propose improvements
 # To apply the same philosophy to docs
 $structure-first-docs write/review this design doc
 
-# For playful review posts
-$structure-first-review write a short review post
 ```
 
 ## Examples

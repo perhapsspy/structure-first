@@ -43,7 +43,6 @@ $structure-first 를 활용해서 기능을 구현해줘
 
 ### 선택
 
-- `structure-first-review`: 후기 작성/게시용 선택 스킬
 - `structure-first-docs`: 같은 구조 철학을 문서 작성/리뷰에 적용하는 보조 스킬
 
 ## 프롬프트 예시
@@ -58,8 +57,6 @@ $structure-first 관점으로 코드를 분석하고 개선 제안 해줘
 # 같은 철학을 문서에 적용할 때
 $structure-first-docs 관점으로 설계 문서를 작성/리뷰 해줘
 
-# 재미용 후기 작성
-$structure-first-review 로 후기 작성해
 ```
 
 ## 예시
