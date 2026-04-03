@@ -18,10 +18,12 @@ When generating, refactoring, or reviewing code, prioritize a **readable success
 Keep boundaries minimal (only when needed), compose with **Atoms** (small units with one stable role and clear I/O), and secure stability through
 **contract-driven tests** rather than implementation-following tests.
 
+## Scope
+
+- Use this skill for **real structure work on code**. For non-implementation tasks, use it only as an internal decision frame, not a response template.
+
 ## When to Use
 
-- Apply this skill primarily to **real structure work on code**: structural refactors, code-shape changes, boundary simplification, decision-ownership cleanup, or structure-focused code review.
-- For tasks that do not directly change implementation, such as change classification, commit planning, or scope analysis, use it only as an internal decision frame. Do not apply a structure-first response template.
 - When code does not read naturally from top to bottom
 - When function/module splitting becomes excessive and utilities start to spread
 - When tests are drifting toward implementation-following patterns
@@ -40,9 +42,9 @@ Keep boundaries minimal (only when needed), compose with **Atoms** (small units 
 ## Scale Application
 
 - Use the same principles at any scale.
-- Fix the **current unit** first.
+- Treat each change as one pass in a larger restructuring effort, using one **current unit** as the focal unit.
 - Local changes: function/file. Feature work: module/use case. Larger refactors: capability/subsystem.
-- Make the Primary Flow readable at that unit.
+- Make the Primary Flow readable at that unit, and keep parent/child fit in view when adjacent units move.
 - At function/file scale, stay shallow.
 - Still name a stage when multiple boundary phases start to mix in one flow.
 - A good result often still reads like `normalize -> load -> decide -> return`.
@@ -132,13 +134,12 @@ Keep boundaries minimal (only when needed), compose with **Atoms** (small units 
 - Are tests contract-focused and concise?
 - If decision rules moved, is one owner now explicit?
 - At capability/subsystem scale, can you name the entrypoint, main orchestrator, and decision owners?
+- If more structure work remains across units, is the next re-entry point clear before ending this pass?
 - Are parameter growth and old-path handling (cleanup or staged migration) justified and complete?
 
 ## Completion Evidence
 
-Use this format only when it materially helps explain actual code structure work or a structure-focused review.
-Do not treat it as the default user-facing output, even for refactors.
-For non-implementation tasks, keep the response natural unless the user explicitly asks for structure-first formatting.
+Use this format only when it materially helps explain structure work or a structure-focused review. It is not the default user-facing output.
 
 When the format is useful, provide these four lines:
 
