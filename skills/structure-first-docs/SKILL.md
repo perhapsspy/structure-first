@@ -1,6 +1,6 @@
 ---
 name: structure-first-docs
-description: Restructure and review engineering documents with source-fidelity-first rules. Preserve original meaning and useful source form, avoid adding new facts or forced decisions, and keep issue/risk-first feedback. Use for design docs, refactor plans, migration plans, PR narratives, and runbooks.
+description: Compose, restructure, and review engineering docs and multi-file documentation packages. Use when cleaning up or assessing design docs, implementation plans, migration plans, runbooks, PR narratives, handoffs, task-doc bundles, or documentation sets for reader flow, source fidelity, ownership/source-of-truth, stale material, backlog/log/evidence separation, and implementation readiness.
 license: MIT
 metadata:
   author: perhapsspy@gmail.com
@@ -12,97 +12,86 @@ metadata:
 
 ## Purpose
 
-Restructure and review engineering documents so readers can follow the content in one top-down pass.
-Preserve source meaning first. Do not invent facts. Do not finalize decisions that were not finalized in the source.
-Preserve useful source form too. Do not flatten emails, checklists, ADRs, or handoff notes into one generic output shape unless readability clearly improves.
+Make engineering documents and document packages easy to read, resume, review, and use as a basis for code work.
+
+For large efforts, treat the document set like a code package: clear entrypoint, small modules with one responsibility, explicit reader routes, and separate places for current source of truth, evidence, history, drafts, and stale material.
 
 ## Modes
 
-1. **Compose**
-- Draft/rewrite documents in readable top-down flow.
+- **Document Compose**: draft or rewrite one document.
+- **Document Review**: review one document; lead with issues and risks.
+- **Package Compose**: build or restructure a multi-file design, migration, runbook, implementation, or handoff package.
+- **Package Review**: review a package for ownership, navigation, stale state, duplication, and implementation readiness.
 
-2. **Review**
-- Review documents and return issues/risks first.
+## Principles
 
-## When to Use
+- Follow existing repository or workspace conventions for paths, filenames, logs, archives, and work areas. This skill defines semantic document quality, not storage layout.
+- Preserve source meaning. Do not invent facts, commitments, owners, dates, metrics, constraints, or decisions.
+- Keep tentative language tentative. Do not turn possibilities, suspicions, or options into decisions.
+- Separate current source of truth from evidence, chronology, drafts, and archived material.
+- One current decision, contract, gate, or plan should have one owning document.
+- A package entry document should usually be current canon, a router, or a bounded execution/runbook packet.
+- Preserve useful source form. Emails, checklists, ADRs, runbooks, handoffs, and logs should keep their native shape when that shape is useful.
+- Prefer no-op or light-touch edits when structure would not materially improve.
+- Reviews clarify document state, ownership, scope, and risk. Do not redesign the underlying system unless the source already frames that redesign.
 
-- Design docs, refactor/migration plans, runbooks, PR narratives
-- Technical doc review before implementation/share
+## Package Roles
 
-## Do Not Use
+Use these roles as a lens, not a required template:
 
-- Marketing/brand copy
-- Strict compliance/legal content owned by policy/legal teams
+- **Entrypoint**: states package purpose, current state, and where to start.
+- **Router**: maps reader goals to documents and names each file's responsibility.
+- **Canonical module**: owns one current topic, contract, model, decision, or plan.
+- **Gate/runbook**: owns preconditions, allowed actions, stop conditions, owner/approval boundary, evidence, rollback, and recovery.
+- **Backlog/TODO**: makes its style explicit: live checklist, deletion-style TODO, or historical audit.
+- **Evidence/log**: preserves proof and chronology without pretending to be current canon.
+- **Working/archive**: keeps undecided or stale material separate from current documents.
+- **Reference candidate**: contains reusable current context that may deserve promotion to a durable reference area.
 
-## Core Rules
+## Compose Rules
 
-1. Fix intent in one sentence first.
-2. Build `Primary Reader Flow` from existing source content.
-3. `Source fidelity first`: every statement must be traceable to source text.
-4. Do not add new facts, constraints, metrics, owners, dates, or policy values unless explicitly provided.
-5. Do not upgrade tentative language into confirmed decisions.
-6. Preserve tentative wording strength. `might`, `seems`, `looks like`, `likely`, `maybe`, and similar language should stay at similar strength.
-7. If chronology is part of the meaning (timestamps, incident sequence, handoff order), preserve that chronology unless reordering clearly improves readability without losing meaning.
-8. If information is missing, keep it as `Open Questions` or `Unknown`, not assumptions.
-9. Preserve source form when it is already useful. Emails should still feel like emails; checklists should still feel like checklists.
-10. Prefer exact no-op when readability gain is marginal. Do not edit just to show structure.
-11. In review mode, always start with issues/risks.
-12. Review should clarify document state/scope/risk. Do not redesign the underlying system unless the source already frames that redesign.
+Start from reader jobs, not from a fixed template:
 
-## Compose Structure (Adaptive)
+- **Resume**: what is true now, what is next, and what is blocked?
+- **Decide**: what facts, options, tradeoffs, and open questions matter?
+- **Implement**: what contracts, boundaries, sequence, and acceptance criteria guide code work?
+- **Verify**: what gates, commands, scenarios, and evidence close the work?
+- **Operate**: what runbook, rollback, owner, and stop conditions matter?
 
-Do not force a fixed template.
-Prefer source-native form first.
+Create only the surfaces the source justifies. If two documents repeat the same current conclusion, choose one owner when the source or existing convention makes ownership clear; otherwise flag an ownership decision.
 
-Use minimum sections first:
-- `Intent`
-- `Current Facts`
-- `Next Actions`
+For migrations or moved ownership, make demotion explicit: old files should route to the new owner or state historical/archive status, not compete as canon.
 
-Add sections only when needed:
-- `Decisions` (only confirmed decisions from source)
-- `Risks`
-- `Open Questions`
-- `Appendix`
+## Review Rules
 
-If the source is already readable enough:
-- prefer exact no-op,
-- keep the original format,
-- or make only light-touch reordering/label cleanup.
+Start with `Issues/Risks`, ordered by severity. Then give evidence and required changes.
 
-## Review Structure
+Look for:
 
-- Start with `Issues/Risks` (severity-ordered).
-- Then provide `Evidence` and `Required Changes`.
-- Keep `Open Questions/Assumptions` only if needed.
-- Add a brief summary only when requested.
-- Prefer requests for clarification, scoping, or status labeling over proposing a new design.
+- missing or misleading entrypoint
+- unclear reader path for resume, decision, implementation, verification, or operation
+- duplicate owners for the same current decision, contract, gate, or plan
+- drafts, evidence dumps, or stale reports that look current
+- current summaries polluted by chronology or command transcripts
+- logs or research that contain the only current conclusion
+- backlog style ambiguity or mixed open/completed/deployment/validation/staging material
+- gate/runbook docs missing preconditions, stop conditions, rollback, recovery, evidence, or approval boundary
+- migration packages where old files still look canonical after ownership moved
+- links to stale or archived material without status labels
+- decisions requiring explicit ownership or policy choice, such as canonical-vs-router status, reference promotion, archive retention, or backlog style
 
-## Execution Steps
+If a change requires an ownership or policy choice not settled by the source, label it as a decision request instead of silently rewriting.
+Do not rewrite append-only logs just to make them neater; sample relevant tails unless historical cleanup is explicitly requested.
 
-1. Identify mode (`Compose` or `Review`).
-2. Identify the source form (email, checklist, ADR, handoff, memo, etc.).
-3. Extract source units: facts, decisions, actions, unknowns.
-4. Detect whether chronology itself carries meaning.
-5. Reorder only as much as needed for readable top-down flow.
-6. Keep source-native form when it already works; use adaptive sections only when they help.
-7. Prefer exact no-op when the gain is negligible.
-8. Verify each statement is source-traceable.
-9. Verify tentative wording was not strengthened.
-10. Convert missing or uncertain items into explicit questions.
-11. Keep output concrete and non-speculative.
-12. If direct edit is possible, edit target files directly.
-13. If direct edit is blocked, return publish-ready Markdown with failure reason.
+## Output Contract
 
-## Final Checks
+For compose work, edit directly when possible; otherwise return publish-ready Markdown and name any blocked inputs.
 
-- Can a reader understand the decision path in one top-down pass?
-- Did any new fact get added that is not in source?
-- Did any tentative idea become a confirmed decision?
-- Did tentative wording stay at similar strength?
-- If chronology mattered, was it preserved?
-- Did the output preserve useful source form instead of flattening it?
-- Are sections minimal for this document?
-- Would exact no-op or lighter touch have been better?
-- In review mode, are issues/risks first?
-- In review mode, did the response avoid drifting into redesign?
+For review work, use this shape:
+
+```text
+Issues/Risks
+Evidence
+Required Changes
+Open Questions or Decision Requests
+```

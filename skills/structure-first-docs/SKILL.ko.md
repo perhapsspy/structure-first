@@ -1,100 +1,89 @@
-# Skill: Structure First Docs (Korean Pair)
+# Skill: Structure First Docs (Korean Companion)
 
-> 영문 기본 문서: `SKILL.md`
+> Review-only Korean companion. Canonical skill file: `SKILL.md`.
 
 ## Purpose
 
-문서를 위에서 아래로 한 번에 읽히게 작성/리뷰합니다.
-핵심은 원문 보존입니다. 새 사실을 만들지 않고, 확정되지 않은 결정을 확정하지 않습니다.
-유용한 원문 양식도 보존합니다. 이메일, 체크리스트, ADR, 인계 메모를 읽힘 개선 없이 한 가지 출력 형태로 평탄화하지 않습니다.
+엔지니어링 문서와 문서 패키지를 읽기 쉽고, 재개하기 쉽고, 코드 작업의 기반으로 쓰기 좋게 만든다.
+
+큰 작업의 문서 세트는 코드 패키지처럼 본다. 명확한 entrypoint, 단일 책임 module, reader route, 현재 source of truth/증거/기록/초안/낡은 자료 분리가 핵심이다.
 
 ## Modes
 
-1. **Compose**
-- 새 문서를 작성하거나 기존 문서를 재구성
+- **Document Compose**: 문서 하나 작성/재구성
+- **Document Review**: 문서 하나 리뷰, 이슈/리스크 우선
+- **Package Compose**: 여러 파일로 된 설계/마이그레이션/런북/구현/인계 패키지 구성
+- **Package Review**: 패키지의 소유권, navigation, stale state, 중복, 구현 준비도 리뷰
 
-2. **Review**
-- 기존 문서를 검토하고 이슈/리스크를 먼저 반환
+## Principles
 
-## When to Use
+- path, filename, log, archive, work area는 기존 프로젝트 관례를 따른다. 이 스킬은 저장 구조가 아니라 의미 구조를 판단한다.
+- 원문 의미를 보존한다. 사실, 약속, 담당, 날짜, 수치, 제약, 결정을 새로 만들지 않는다.
+- 추정은 추정으로 둔다. 가능성, 의심, 선택지를 결정으로 바꾸지 않는다.
+- 현재 source of truth를 증거, chronology, 초안, archive와 분리한다.
+- 현재 결정, 계약, gate, 계획 하나에는 owning document 하나만 둔다.
+- package entry 문서는 보통 current canon, router, bounded execution/runbook packet 중 하나여야 한다.
+- 이메일, 체크리스트, ADR, 런북, 인계, 로그처럼 유용한 원문 양식은 유지한다.
+- 구조 개선 효과가 작으면 no-op나 light-touch edit를 우선한다.
+- 리뷰는 문서 상태, 소유권, 범위, 리스크를 명확히 한다. 원문이 이미 다루지 않는 시스템 재설계로 번지지 않는다.
 
-- 설계 문서, 리팩터/마이그레이션 계획, 런북, PR 설명 문서
-- 구현 전 기술 문서 리뷰
+## Package Roles
 
-## Do Not Use
+고정 템플릿이 아니라 lens로 쓴다.
 
-- 마케팅/브랜딩 카피
-- 정책/법무 전담이 필요한 엄격 컴플라이언스 문서
+- **Entrypoint**: 패키지 목적, 현재 상태, 시작점을 말한다.
+- **Router**: reader goal을 문서와 파일 책임에 연결한다.
+- **Canonical module**: 현재 topic, contract, model, decision, plan 하나를 소유한다.
+- **Gate/runbook**: precondition, allowed action, stop condition, owner/approval boundary, evidence, rollback, recovery를 소유한다.
+- **Backlog/TODO**: live checklist, deletion-style TODO, historical audit 중 성격을 명확히 한다.
+- **Evidence/log**: 증거와 chronology를 보존하되 current canon처럼 보이지 않게 한다.
+- **Working/archive**: 미확정 또는 stale material을 현재 문서와 분리한다.
+- **Reference candidate**: durable reference로 승격할 만한 reusable current context를 담는다.
 
-## Core Rules
+## Compose Rules
 
-1. 먼저 목적을 한 문장으로 고정한다.
-2. `Primary Reader Flow`는 원문 내용에서만 재배열해 만든다.
-3. `원문 보존 우선`: 모든 문장은 원문에서 추적 가능해야 한다.
-4. 원문에 없는 사실/제약/수치/담당/일정/정책값을 새로 추가하지 않는다.
-5. 원문의 추정/가능성 표현을 확정 결정으로 승격하지 않는다.
-6. 추정 표현 강도를 유지한다. `일 수 있다`, `같다`, `그런 듯하다`, `가능성이 높다`, `아마도` 같은 표현을 더 단정적으로 바꾸지 않는다.
-7. 시간 순서 자체가 의미인 문서(타임스탬프, 인계 순서, 사고 경과)는 그 chronology를 보존한다. 재배열이 읽힘을 높이더라도 의미 손실이 생기면 바꾸지 않는다.
-8. 정보가 비어 있으면 가정하지 말고 `Open Questions` 또는 `Unknown`으로 둔다.
-9. 원문 양식이 이미 유용하면 유지한다. 이메일은 이메일답게, 체크리스트는 체크리스트답게 둔다.
-10. 읽힘 개선 폭이 작으면 exact no-op를 우선한다. 구조를 보여주기 위해 억지로 손대지 않는다.
-11. 리뷰 출력은 항상 이슈/리스크부터 시작한다.
-12. 리뷰는 문서 상태/범위/리스크를 명확히 하는 데 집중한다. 원문이 이미 그 재설계를 다루지 않는다면 시스템 재설계로 번지지 않는다.
+고정 템플릿보다 reader job에서 시작한다.
 
-## Compose Structure (Adaptive)
+- **Resume**: 지금 무엇이 참이고, 다음은 무엇이며, 무엇이 막혔는가?
+- **Decide**: 어떤 사실, 선택지, tradeoff, open question이 중요한가?
+- **Implement**: 어떤 계약, 경계, 순서, acceptance criteria가 코드 작업을 이끄는가?
+- **Verify**: 어떤 gate, command, scenario, evidence가 작업을 닫는가?
+- **Operate**: 어떤 runbook, rollback, owner, stop condition이 중요한가?
 
-고정 템플릿을 강제하지 않는다.
-원문 양식을 우선한다.
+원문이 정당화하는 surface만 만든다. 두 문서가 같은 현재 결론을 반복하면 source나 기존 관례상 ownership이 명확할 때만 하나를 owner로 정하고, 그렇지 않으면 ownership decision으로 표시한다.
 
-최소 섹션부터 시작:
-- `Intent`
-- `Current Facts`
-- `Next Actions`
+ownership이 이동한 경우 예전 파일은 새 owner로 routing하거나 historical/archive status를 명시해야 하며, canon처럼 경쟁하면 안 된다.
 
-필요할 때만 추가:
-- `Decisions` (원문에서 확정된 결정만)
-- `Risks`
-- `Open Questions`
-- `Appendix`
+## Review Rules
 
-원문이 이미 충분히 읽히면:
-- exact no-op를 먼저 고려하고,
-- 원래 형식을 유지하거나,
-- 가벼운 재배열/라벨 정리만 한다.
+`Issues/Risks`를 심각도 순으로 먼저 제시하고, 그다음 evidence와 required changes를 쓴다.
 
-## Review Structure
+확인할 것:
 
-- `Issues/Risks`를 심각도 순으로 먼저 제시한다.
-- 그다음 `Evidence`, `Required Changes`를 제시한다.
-- `Open Questions/Assumptions`는 필요할 때만 둔다.
-- 요약은 요청된 경우에만 추가한다.
-- 새 설계를 제안하기보다, 문서의 상태/범위/라벨을 더 분명히 하도록 요구한다.
+- entrypoint가 없거나 오해를 만든다
+- resume, decision, implementation, verification, operation reader path가 불명확하다
+- 같은 현재 결정, 계약, gate, 계획에 owner가 둘 이상이다
+- 초안, evidence dump, stale report가 current처럼 보인다
+- current summary에 chronology나 command transcript가 섞였다
+- log나 research 안에만 현재 결론이 있다
+- backlog style이 모호하거나 open/completed/deployment/validation/staging material이 섞였다
+- gate/runbook에 precondition, stop condition, rollback, recovery, evidence, approval boundary가 빠졌다
+- ownership 이동 뒤에도 예전 파일이 canonical처럼 보인다
+- stale/archive 링크에 status label이 없다
+- canonical-vs-router, reference promotion, archive retention, backlog style처럼 명시적인 ownership 또는 policy choice가 필요한 결정이 숨어 있다
 
-## Execution Steps
+source에서 정해지지 않은 ownership 또는 policy choice가 필요한 변경은 조용히 rewrite하지 말고 decision request로 표시한다.
+append-only log는 깔끔하게 만들기 위해 다시 쓰지 않는다. historical cleanup 요청이 없으면 관련 tail만 sample한다.
 
-1. 모드(`Compose`/`Review`)를 먼저 확정한다.
-2. 원문 양식(이메일, 체크리스트, ADR, 인계 메모 등)을 먼저 식별한다.
-3. 원문에서 사실/결정/할 일/미확정 항목을 분리한다.
-4. 시간 순서 자체가 의미인지 먼저 확인한다.
-5. 필요한 만큼만 위에서 아래로 읽히게 재배열한다.
-6. 원문 양식이 이미 작동하면 유지하고, 필요할 때만 가변 섹션을 쓴다.
-7. 개선 폭이 작으면 exact no-op를 우선한다.
-8. 모든 문장이 원문 추적 가능한지 검증한다.
-9. 추정 표현 강도가 세지지 않았는지 검증한다.
-10. 미확정 정보는 질문으로 드러낸다.
-11. 출력은 구체적이고 비추측적으로 유지한다.
-12. 직접 수정 가능하면 대상 파일을 바로 수정한다.
-13. 직접 수정이 막히면 게시 가능한 Markdown과 실패 사유를 함께 반환한다.
+## Output Contract
 
-## Final Checks
+Compose는 가능하면 직접 수정한다. 막히면 publish-ready Markdown과 blocked input을 반환한다.
 
-- 독자가 위에서 아래로 판단 흐름을 한 번에 따라갈 수 있는가?
-- 원문에 없는 새 사실이 추가되지 않았는가?
-- 미확정 아이디어가 확정 결정으로 바뀌지 않았는가?
-- 추정 표현 강도가 원문과 비슷하게 유지됐는가?
-- 시간 순서가 의미인 문서에서 chronology를 보존했는가?
-- 유용한 원문 양식을 괜히 평탄화하지 않았는가?
-- 문서에 과한 섹션이 붙지 않았는가?
-- exact no-op 또는 더 가벼운 수정이 더 나은 경우는 아니었는가?
-- 리뷰 모드에서 이슈/리스크가 최우선인가?
-- 리뷰가 시스템 재설계로 번지지 않았는가?
+Review는 아래 형태를 쓴다.
+
+```text
+Issues/Risks
+Evidence
+Required Changes
+Open Questions or Decision Requests
+```
