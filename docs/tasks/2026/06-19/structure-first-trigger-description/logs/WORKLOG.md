@@ -12,3 +12,6 @@
 - 사용자 피드백에 따라 `비자명한 코드` 표현이 너무 좁고 어색하다고 판단했다.
 - 새 wording은 구조 선택이 명시적으로 걸린 작업만이 아니라, 순수 기계적/아주 작은/일회성 수정이 아닌 대부분의 코드 작업에서 Primary Flow와 경계/소유/부작용/상태/테스트 계약을 유지하게 하는 방향으로 조정했다.
 - `deep_reasoner` 재검토에서 `tiny local fixes`가 작지만 위험한 버그 수정을 배제할 수 있다는 지적을 반영해, 제외 범위를 `Skip only purely mechanical edits, trivial local changes, and throwaway experiments`로 좁혔다.
+- `git diff --check`, `quick_validate.py skills/structure-first`, `project-context` shape check를 다시 통과시켰다.
+- `structure-first 스킬 트리거 범위 재정리` commit `7dbb6f1`을 `main`에 push했다.
+- `npx skills update structure-first -g -y`로 global 설치본을 업데이트했고, 설치된 `structure-first/SKILL.md`와 `SKILL.ko.md`의 새 문구를 확인했다.

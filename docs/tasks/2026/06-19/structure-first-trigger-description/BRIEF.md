@@ -18,11 +18,12 @@
 
 - `deep_reasoner` 재검토를 반영해 "비자명한 코드" 표현을 제거하고, 작은데 위험한 버그 수정을 배제하지 않도록 `Skip only` 기준으로 한/영 문구를 수정했다.
 - `git diff --check`, `quick_validate.py`, `project-context` shape check가 통과했다.
-- repo `main` push와 global 로컬 설치본 갱신이 남아 있다.
+- repo `main`에 commit `7dbb6f1`을 push했다.
+- `npx skills update structure-first -g -y`로 global 로컬 설치본을 갱신했고, 설치본의 한/영 문구가 repo와 일치한다.
 
 ## Next Step
 
-- Commit/push latest wording, then run `npx skills update structure-first -g -y` and verify the installed copy.
+- Reopen if recent coding tasks still fail to trigger `structure-first` after this description update.
 
 ## Working Boundary
 
