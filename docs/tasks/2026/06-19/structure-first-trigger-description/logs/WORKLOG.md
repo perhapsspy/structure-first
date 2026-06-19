@@ -9,3 +9,6 @@
 - `git diff --check`, 임시 `PyYAML` target을 사용한 `quick_validate.py skills/structure-first`, `project-context` shape check를 실행해 통과를 확인했다.
 - `structure-first 스킬 description 트리거 개선` commit을 `main`에 push한 뒤 `npx skills update structure-first -g -y`로 global 설치본을 갱신했다.
 - global 설치본의 `structure-first/SKILL.md`와 `SKILL.ko.md`를 확인해 description과 한국어 동기화 문장이 repo와 일치함을 확인했다.
+- 사용자 피드백에 따라 `비자명한 코드` 표현이 너무 좁고 어색하다고 판단했다.
+- 새 wording은 구조 선택이 명시적으로 걸린 작업만이 아니라, 순수 기계적/아주 작은/일회성 수정이 아닌 대부분의 코드 작업에서 Primary Flow와 경계/소유/부작용/상태/테스트 계약을 유지하게 하는 방향으로 조정했다.
+- `deep_reasoner` 재검토에서 `tiny local fixes`가 작지만 위험한 버그 수정을 배제할 수 있다는 지적을 반영해, 제외 범위를 `Skip only purely mechanical edits, trivial local changes, and throwaway experiments`로 좁혔다.

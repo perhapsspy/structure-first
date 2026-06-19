@@ -1,6 +1,6 @@
 ---
 name: structure-first
-description: Non-trivial code generation, editing, refactoring, and review where readable primary flow, function/module boundaries, orchestration, decision ownership, side-effect boundaries, async/state ownership, or contract-focused tests matter
+description: Use for code generation, feature work, bug fixes, refactoring, and code review where readable primary flow, minimal boundaries, owned decisions, isolated side effects, clear async/state behavior, or contract-focused tests improve correctness and maintainability. Skip only purely mechanical edits, trivial local changes, and throwaway experiments.
 license: MIT
 metadata:
   author: perhapsspy@gmail.com
