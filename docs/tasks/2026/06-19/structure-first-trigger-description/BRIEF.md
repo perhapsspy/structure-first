@@ -18,11 +18,12 @@
 
 - `deep_reasoner` 검토를 반영해 자기지시형 표현 없이 trigger vocabulary 중심으로 한/영 문구를 수정했다.
 - `git diff --check`, `quick_validate.py`, `project-context` shape check가 통과했다.
-- 로컬 global 설치본은 `structure-first`로 설치되어 있다.
+- repo `main`에 commit `05448d6`을 push했다.
+- `npx skills update structure-first -g -y`로 global 로컬 설치본을 갱신했고, 설치본의 한/영 문구가 repo와 일치한다.
 
 ## Next Step
 
-- commit/push와 local update를 완료한다.
+- Reopen if recent coding tasks still fail to trigger `structure-first` after this description update.
 
 ## Working Boundary
 

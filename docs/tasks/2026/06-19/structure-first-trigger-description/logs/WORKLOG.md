@@ -7,3 +7,5 @@
 - `deep_reasoner`의 trigger vocabulary 제안을 반영해 `SKILL.md` description을 `Non-trivial code generation/editing/refactoring/review` 표면과 flow/boundary/ownership/test 계약 중심으로 수정했다.
 - `SKILL.ko.md`에는 같은 의미를 한국어 설명 동기화 문장으로 추가했다.
 - `git diff --check`, 임시 `PyYAML` target을 사용한 `quick_validate.py skills/structure-first`, `project-context` shape check를 실행해 통과를 확인했다.
+- `structure-first 스킬 description 트리거 개선` commit을 `main`에 push한 뒤 `npx skills update structure-first -g -y`로 global 설치본을 갱신했다.
+- global 설치본의 `structure-first/SKILL.md`와 `SKILL.ko.md`를 확인해 description과 한국어 동기화 문장이 repo와 일치함을 확인했다.
