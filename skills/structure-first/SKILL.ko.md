@@ -1,6 +1,7 @@
 # Skill: Structure First (Korean Pair)
 
 > 영문 기본 문서: `SKILL.md`
+> 설명 동기화: 작은 한 줄 수정이나 일회성 실험은 제외하고, 비자명한 코드 생성/수정/리팩터링/리뷰에서 Primary Flow, 함수/모듈 경계, orchestration, decision ownership, side-effect boundary, async/state ownership, contract-focused tests가 중요할 때 쓰는 스킬입니다.
 
 ## Purpose
 

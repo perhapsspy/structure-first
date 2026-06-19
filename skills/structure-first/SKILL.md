@@ -1,6 +1,6 @@
 ---
 name: structure-first
-description: Readable primary-flow–first code structuring with minimal boundaries, atomic composition, and contract-driven unit tests
+description: Non-trivial code generation, editing, refactoring, and review where readable primary flow, function/module boundaries, orchestration, decision ownership, side-effect boundaries, async/state ownership, or contract-focused tests matter
 license: MIT
 metadata:
   author: perhapsspy@gmail.com
