@@ -1,6 +1,6 @@
 ---
 name: structure-first-docs
-description: Compose, restructure, and review engineering docs and multi-file documentation packages. Use when cleaning up or assessing design docs, implementation plans, migration plans, runbooks, PR narratives, handoffs, task-doc bundles, or documentation sets for reader flow, source fidelity, ownership/source-of-truth, stale material, backlog/log/evidence separation, and implementation readiness.
+description: Compose, clean up, restructure, audit, and review project docs and documentation packages for source-of-truth ownership, current-vs-stale cleanup, reader routes, task docs, handoffs, design docs, implementation plans, migration plans, runbooks, PR narratives, backlog/log/evidence separation, and implementation readiness.
 license: MIT
 metadata:
   author: perhapsspy@gmail.com
@@ -12,7 +12,7 @@ metadata:
 
 ## Purpose
 
-Make engineering documents and document packages easy to read, resume, review, and use as a basis for code work.
+Make project documents and document packages easy to read, resume, review, and use as a basis for code work.
 
 For large efforts, treat the document set like a code package: clear entrypoint, small modules with one responsibility, explicit reader routes, and separate places for current source of truth, evidence, history, drafts, and stale material.
 
@@ -61,6 +61,10 @@ Start from reader jobs, not from a fixed template:
 Create only the surfaces the source justifies. If two documents repeat the same current conclusion, choose one owner when the source or existing convention makes ownership clear; otherwise flag an ownership decision.
 
 For migrations or moved ownership, make demotion explicit: old files should route to the new owner or state historical/archive status, not compete as canon.
+
+When an existing surface already owns a fact, decision, or route, edit that surface before adding explanatory prose elsewhere.
+Treat user corrections and deletion requests as edit inputs: replace, delete, demote to archive/working, or point to the owning surface.
+Do not preserve removed material as warnings, defensive rationale, unsupported audience assumptions, or duplicate routes in current documents.
 
 ## Review Rules
 
