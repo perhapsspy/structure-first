@@ -22,6 +22,7 @@ Keep boundaries minimal (only when needed), compose with **Atoms** (small units 
 
 - Use this skill when the **code shape itself is changing** or when you are doing a structure-focused code review.
 - For planning, classification, or scope analysis, keep it as an internal lens rather than a response template.
+- For user-visible bugs or UI malfunctions, characterize the observable behavior first; apply structure work only after the current unit's responsibility for that behavior is clear.
 - Use it when code does not read naturally from top to bottom.
 - Use it when function/module splitting becomes excessive and utilities start to spread.
 - Use it when tests are drifting toward implementation-following patterns.
