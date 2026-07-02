@@ -70,11 +70,6 @@ $structure-first-docs 관점으로 설계 문서를 작성/리뷰 해줘
 - 개발 배경: [한국어](docs/ORIGIN.md) | [English](docs/ORIGIN.en.md)
 - 배경 메모: [한국어](docs/INSIGHTS.md) | [English](docs/INSIGHTS.en.md)
 
-## 함께 쓰기 좋은 스킬
-
-- [`structure-first`](https://github.com/perhapsspy/structure-first): 코드의 성공 흐름을 먼저 읽히게 정리
-- [`project-context`](https://github.com/perhapsspy/project-context): 작업 맥락을 저장소 안에 남겨 다음 세션에도 이어가기 쉽게 정리
-
 ## 지원
 
 [![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://www.buymeacoffee.com/perhapsspy)
