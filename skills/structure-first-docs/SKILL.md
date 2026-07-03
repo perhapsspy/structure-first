@@ -1,11 +1,6 @@
 ---
 name: structure-first-docs
 description: Compose, clean up, restructure, audit, and review project docs and documentation packages for source-of-truth ownership, current-vs-stale cleanup, reader routes, task docs, handoffs, design docs, implementation plans, migration plans, runbooks, PR narratives, backlog/log/evidence separation, and implementation readiness.
-license: MIT
-metadata:
-  author: perhapsspy@gmail.com
-  version: '1.0'
-  source_repository: https://github.com/perhapsspy/structure-first
 ---
 
 # Skill: Structure First Docs
