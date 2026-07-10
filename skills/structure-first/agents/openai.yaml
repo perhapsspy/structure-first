@@ -1,0 +1,5 @@
+interface:
+  display_name: "Structure First"
+  short_description: "Shape readable code flow and boundaries"
+  default_prompt: "Use $structure-first to make this code's primary flow, boundaries, and contract tests easier to follow."
+
