@@ -10,8 +10,6 @@
 
 `스펙:` agentskills.io | `라이선스:` MIT | `에이전트:` Codex, Claude Code
 
-선택 스킬인 `structure-first-docs`는 같은 철학을 설계 문서, 계획 문서, 런북 같은 엔지니어링 문서에 적용합니다.
-
 ## 빠른 시작
 
 **설치**
@@ -34,16 +32,8 @@ $structure-first 를 활용해서 기능을 구현해줘
 
 ## 설치
 
-### 기본
-
-기본 경로는 `structure-first`부터 시작하고, 보조 스킬은 필요할 때만 추가하는 방식입니다.
-
 - skills.sh 빠른 설치: `npx skills add perhapsspy/structure-first`
 - 로컬 설치: `skills/structure-first` 폴더를 에이전트 스킬 디렉터리에 복사
-
-### 선택
-
-- `structure-first-docs`: 같은 구조 철학을 문서 작성/리뷰에 적용하는 보조 스킬
 
 ## 프롬프트 예시
 
@@ -54,9 +44,6 @@ $structure-first 를 활용해서 기능을 구현해줘
 # 기존 코드 개선 할 때
 $structure-first 관점으로 코드를 분석하고 개선 제안 해줘
 
-# 같은 철학을 문서에 적용할 때
-$structure-first-docs 관점으로 설계 문서를 작성/리뷰 해줘
-
 ```
 
 ## 예시
@@ -66,7 +53,6 @@ $structure-first-docs 관점으로 설계 문서를 작성/리뷰 해줘
 ## 더 보기
 
 - 스킬 상세 규칙: [한국어](skills/structure-first/SKILL.ko.md) | [English](skills/structure-first/SKILL.md)
-- 문서 보조 스킬: [한국어](skills/structure-first-docs/SKILL.ko.md) | [English](skills/structure-first-docs/SKILL.md)
 - 개발 배경: [한국어](docs/ORIGIN.md) | [English](docs/ORIGIN.en.md)
 - 배경 메모: [한국어](docs/INSIGHTS.md) | [English](docs/INSIGHTS.en.md)
 

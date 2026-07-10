@@ -2,7 +2,7 @@
 > Note: This English text was translated and edited with LLM assistance. If anything reads awkwardly, please check the Korean version or open an issue.
 
 This document records coding habits and structural instincts that were organized before `structure-first` became a formal skill.
-It is intended to be a baseline for future derivative skills such as `structure-first-docs`.
+It is intended to be a baseline for future extensions of these structural principles.
 
 [Korean Original](INSIGHTS.md) | [English](INSIGHTS.en.md)
 
@@ -65,10 +65,3 @@ It is intended to be a baseline for future derivative skills such as `structure-
 - Achieve reuse through composition: avoid speculative abstractions.
 - Write sufficient atom-level tests: validate contracts, not internals.
 - Keep test code readable: table cases plus restrained helper usage.
-
-## Extension Hints for `structure-first-docs`
-
-- Prefer short rules + execution order + checklist over long convention prose.
-- Apply `Primary Reader Flow` to documents too, without forcing a fixed template.
-- Treat `Intent -> Decision -> Steps -> Risks -> Open Questions` as a commonly useful default flow example.
-- Keep "issues/risks first" as the default contract for review responses.

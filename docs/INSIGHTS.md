@@ -1,7 +1,7 @@
 # Structure First - Pre-Skill Insights
 
 이 문서는 `structure-first`를 스킬로 만들기 전에 정리해두었던 코딩 습관/구조 감각을 기록한 메모입니다.
-향후 `structure-first-docs` 같은 파생 스킬을 설계할 때 기준점으로 사용합니다.
+향후 구조 원칙을 확장할 때 기준점으로 사용합니다.
 
 [한국어](INSIGHTS.md) | [English](INSIGHTS.en.md)
 
@@ -64,10 +64,3 @@
 - 재사용은 조합으로 얻는다: 미래 가정 추상화는 피한다.
 - 테스트는 원자 단위로 충분히 작성한다: 구현이 아니라 계약을 검증한다.
 - 테스트 코드도 읽혀야 한다: table case + 절제된 헬퍼로 간결하게 유지한다.
-
-## 문서 스킬 확장 힌트 (`structure-first-docs`)
-
-- 컨벤션 백과사전보다, 짧은 규칙 + 실행 순서 + 체크리스트 형태를 우선한다.
-- 문서도 `Primary Reader Flow`를 따르되, 고정 템플릿을 강제하지 않는다.
-- `Intent -> Decision -> Steps -> Risks -> Open Questions`는 자주 유용한 기본 흐름 예시로 본다.
-- 리뷰 응답은 항상 `이슈/리스크 먼저`를 기본 계약으로 둔다.

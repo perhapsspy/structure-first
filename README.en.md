@@ -12,8 +12,6 @@ The goal is to reduce change radius and side effects during complex changes.
 
 `Spec:` agentskills.io | `License:` MIT | `Agents:` Codex, Claude Code
 
-The optional `structure-first-docs` skill applies the same philosophy to engineering documents such as design docs, plans, and runbooks.
-
 ## Quick Start
 
 **Install**
@@ -36,16 +34,8 @@ $structure-first implement this feature
 
 ## Install
 
-### Required
-
-Start with `structure-first` first, then add companion skills only when needed.
-
 - Fast install via skills.sh: `npx skills add perhapsspy/structure-first`
 - Local install: copy `skills/structure-first` into your agent's local skills directory
-
-### Optional
-
-- `structure-first-docs`: optional companion skill that applies the same structural philosophy to document writing/review
 
 ## Quick Prompt
 
@@ -56,9 +46,6 @@ $structure-first implement this feature
 # For improving existing code
 $structure-first analyze this code and propose improvements
 
-# To apply the same philosophy to docs
-$structure-first-docs write/review this design doc
-
 ```
 
 ## Examples
@@ -68,7 +55,6 @@ $structure-first-docs write/review this design doc
 ## More
 
 - Detailed skill rules: [English](skills/structure-first/SKILL.md) | [Korean](skills/structure-first/SKILL.ko.md)
-- Docs companion skill: [English](skills/structure-first-docs/SKILL.md) | [Korean](skills/structure-first-docs/SKILL.ko.md)
 - Dev story: [English](docs/ORIGIN.en.md) | [Korean](docs/ORIGIN.md)
 - Background notes: [English](docs/INSIGHTS.en.md) | [Korean](docs/INSIGHTS.md)
 
