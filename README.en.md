@@ -2,15 +2,9 @@
 
 [Korean](README.md) | [English](README.en.md)
 
-> Note: This English text was translated and edited with LLM assistance. If anything reads awkwardly, please check the Korean version or open an issue.
-
 ## Summary
 
-`structure-first` is a skill for making the **Primary Flow** of code readable first.
-It keeps boundaries minimal, pushes detail downward, and favors contract-focused tests.
-The goal is to reduce change radius and side effects during complex changes.
-
-`Spec:` agentskills.io | `License:` MIT | `Agents:` Codex, Claude Code
+Complex changes should still have a main path that is easy to follow, without small edits causing unexpected side effects elsewhere. `structure-first` organizes code for top-down reading and keeps tests focused on behavior that must remain true.
 
 ## Quick Start
 
@@ -29,13 +23,8 @@ $structure-first implement this feature
 ## When to Use
 
 - When state/condition branching makes top-down reading hard
-- When AI edits frequently create side effects
+- When a small edit unexpectedly changes unrelated behavior
 - When tests break because they follow implementation details too closely
-
-## Install
-
-- Fast install via skills.sh: `npx skills add perhapsspy/structure-first`
-- Local install: copy `skills/structure-first` into your agent's local skills directory
 
 ## Quick Prompt
 
