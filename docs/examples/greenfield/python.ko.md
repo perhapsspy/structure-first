@@ -46,4 +46,4 @@ def classify_rows(rows):
 
 - Primary Flow: `parse -> classify -> persist`
 - Boundaries: `parse_csv_rows`, `persist_valid_users`
-- Tests: `validate_user_row` 계약 테이블 + `import_users` 헤더/성공 계약 검증 (로컬 계약 테스트 검증됨)
+- 권장 테스트: `validate_user_row` 계약 테이블 + `import_users` 헤더/성공 계약 검증

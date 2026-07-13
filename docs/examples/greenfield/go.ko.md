@@ -52,4 +52,4 @@ func DecideWebhook(ctx Context) (Decision, *DomainError) {
 
 - Primary Flow: `load -> decide -> persist`
 - Boundaries: `LoadWebhookContext`, `PersistWebhookEvent`
-- Tests: `DecideWebhook` 계약 + `HandleWebhook` idempotency key 재요청/이벤트 저장 계약 검증 (로컬 계약 테스트 검증됨)
+- 권장 테스트: `DecideWebhook` 계약 + `HandleWebhook` idempotency key 재요청/이벤트 저장 계약 검증

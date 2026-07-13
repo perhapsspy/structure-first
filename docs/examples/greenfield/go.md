@@ -54,4 +54,4 @@ func DecideWebhook(ctx Context) (Decision, *DomainError) {
 
 - Primary Flow: `load -> decide -> persist`
 - Boundaries: `LoadWebhookContext`, `PersistWebhookEvent`
-- Tests: contract checks for `DecideWebhook` + idempotency re-request/event persistence in `HandleWebhook` (verified with local contract tests)
+- Recommended tests: contract checks for `DecideWebhook` + idempotency re-request/event persistence in `HandleWebhook`

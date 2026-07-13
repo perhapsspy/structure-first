@@ -109,12 +109,9 @@ def charge_subscription(user_id, plan_code, token, deps, coupon_code=None, trial
 def decide_charge(ctx):
     amount = apply_trial_rule(ctx.plan_monthly, ctx.request.trial)
     amount = apply_segment_discount(amount, ctx.user.segment)
-    amount = apply_coupon(amount, ctx.coupon)
+    amount = max(apply_coupon(amount, ctx.coupon), 0)
     amount = apply_country_tax(amount, ctx.user.country)
     amount = apply_currency_conversion(amount, ctx.plan_currency, ctx.fx_rate)
-
-    if amount < 0:
-        return fail("invalid_amount")
 
     return {"ok": True, "value": {"amount": amount, "currency": "USD"}}
 ```

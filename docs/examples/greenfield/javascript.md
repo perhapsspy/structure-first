@@ -42,4 +42,4 @@ function decideExposure(ctx) {
 
 - Primary Flow: `build context -> decide`
 - Boundaries: `buildExposureContext`
-- Tests: priority contracts (allowlist/country/rollout) + invalid input checks (verified with local contract tests)
+- Recommended tests: priority contracts (allowlist/country/rollout) + invalid input checks

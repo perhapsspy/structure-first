@@ -76,7 +76,9 @@ pub async fn reserve_stock(input: Value, deps: &Deps) -> Result<Output, ErrorRea
     let ctx = load_reserve_context(&req, deps).await?;
     let decision = decide_reserve(&ctx)?;
     let saved = persist_reserve(&decision, deps).await?;
-    publish_stock_reserved(saved.hold_id, deps).await?;
+    if let Err(e) = publish_stock_reserved(saved.hold_id, deps).await {
+        deps.audit.log(format!("publish_failed:{e}")).await.ok();
+    }
     record_reserve_metrics(ctx.started_at, deps).await;
     Ok(Output { hold_id: saved.hold_id })
 }

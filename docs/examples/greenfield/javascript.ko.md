@@ -40,4 +40,4 @@ function decideExposure(ctx) {
 
 - Primary Flow: `build context -> decide`
 - Boundaries: `buildExposureContext`
-- Tests: 우선순위 계약(allowlist/country/rollout) + invalid input 검증 (로컬 계약 테스트 검증됨)
+- 권장 테스트: 우선순위 계약(allowlist/country/rollout) + invalid input 검증

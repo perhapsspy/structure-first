@@ -48,4 +48,4 @@ def classify_rows(rows):
 
 - Primary Flow: `parse -> classify -> persist`
 - Boundaries: `parse_csv_rows`, `persist_valid_users`
-- Tests: contract table for `validate_user_row` + header/success contracts for `import_users` (verified with local contract tests)
+- Recommended tests: contract table for `validate_user_row` + header/success contracts for `import_users`

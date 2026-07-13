@@ -47,4 +47,4 @@ DecisionResult decideLeaveApproval(LeaveApprovalContext ctx) {
 
 - Primary Flow: `load -> decide -> persist -> notify`
 - Boundaries: `loadLeaveApprovalContext`, `persistLeaveApproval`, `notifyLeaveApproved`
-- Tests: success/input contracts for `approveLeave` + forbidden contract for `decideLeaveApproval` (verified with local contract tests)
+- Recommended tests: success/input contracts for `approveLeave` + forbidden contract for `decideLeaveApproval`

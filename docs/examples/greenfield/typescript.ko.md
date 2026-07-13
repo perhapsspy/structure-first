@@ -51,4 +51,4 @@ function validateNotification(req: NotificationRequest): 'quiet_hour' | 'invalid
 
 - Primary Flow: `parse -> split -> sort`
 - Boundaries: `parseNotificationRequests`
-- Tests: shape/quiet hour(`validateNotification`) + 우선순위 정렬(`sortByPriority`) 계약 검증 (로컬 계약 테스트 검증됨)
+- 권장 테스트: shape/quiet hour(`validateNotification`) + 우선순위 정렬(`sortByPriority`) 계약 검증

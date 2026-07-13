@@ -45,4 +45,4 @@ DecisionResult decideLeaveApproval(LeaveApprovalContext ctx) {
 
 - Primary Flow: `load -> decide -> persist -> notify`
 - Boundaries: `loadLeaveApprovalContext`, `persistLeaveApproval`, `notifyLeaveApproved`
-- Tests: `approveLeave` 성공/입력 검증 + `decideLeaveApproval` forbidden 계약 검증 (로컬 계약 테스트 검증됨)
+- 권장 테스트: `approveLeave` 성공/입력 검증 + `decideLeaveApproval` forbidden 계약 검증

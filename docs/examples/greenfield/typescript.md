@@ -53,4 +53,4 @@ function validateNotification(req: NotificationRequest): 'quiet_hour' | 'invalid
 
 - Primary Flow: `parse -> split -> sort`
 - Boundaries: `parseNotificationRequests`
-- Tests: shape/quiet-hour contracts (`validateNotification`) + priority sorting contract (`sortByPriority`) (verified with local contract tests)
+- Recommended tests: shape/quiet-hour contracts (`validateNotification`) + priority sorting contract (`sortByPriority`)

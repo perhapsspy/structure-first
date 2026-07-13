@@ -99,8 +99,8 @@ export async function buildDashboard(userId, filters, deps) {
   const contextResult = await loadDashboardContext(userId, filters, deps);
   if (!contextResult.ok) return fail(contextResult.reason);
 
-  const selected = selectTickets(contextResult.value.tickets, contextResult.value.filters);
-  const view = composeDashboardView(contextResult.value.user, selected);
+  const selection = selectTickets(contextResult.value.tickets, contextResult.value.filters);
+  const view = composeDashboardView(contextResult.value.user, selection);
 
   await persistDashboardCache(userId, view, deps);
   await trackDashboardViewed(userId, view.summary, contextResult.value.filters, deps);
@@ -112,14 +112,17 @@ export async function buildDashboard(userId, filters, deps) {
 function selectTickets(tickets, filters) {
   const filtered = applyTicketFilters(tickets, filters);
   const limited = applyTicketLimit(filtered, filters.limit);
-  return sortRecentTickets(limited);
+  return {
+    summaryTickets: filtered,
+    recentTickets: sortRecentTickets(limited),
+  };
 }
 
-function composeDashboardView(user, tickets) {
+function composeDashboardView(user, selection) {
   return {
     user: { id: user.id, name: user.name },
-    summary: summarizeTickets(tickets),
-    recent: tickets.slice(0, 5),
+    summary: summarizeTickets(selection.summaryTickets),
+    recent: selection.recentTickets.slice(0, 5),
   };
 }
 ```

@@ -42,4 +42,4 @@ fn validate_draft(draft: &Draft) -> Result<ValidatedDraft, PublishError> {
 
 - Primary Flow: `validate -> render -> persist -> publish`
 - Boundaries: `persist_document`, `publish_document_event`
-- Tests: `validate_draft`/`normalize_tags` 계약 검증 (로컬 계약 테스트 검증됨)
+- 권장 테스트: `validate_draft`/`normalize_tags` 계약 검증

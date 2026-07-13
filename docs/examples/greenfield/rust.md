@@ -44,4 +44,4 @@ fn validate_draft(draft: &Draft) -> Result<ValidatedDraft, PublishError> {
 
 - Primary Flow: `validate -> render -> persist -> publish`
 - Boundaries: `persist_document`, `publish_document_event`
-- Tests: contract checks for `validate_draft`/`normalize_tags` (verified with local contract tests)
+- Recommended tests: contract checks for `validate_draft`/`normalize_tags`
