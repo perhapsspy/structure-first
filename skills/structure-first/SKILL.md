@@ -47,6 +47,7 @@ Local changes usually mean function/file. Feature work usually means module/use 
 3. **Minimize Boundaries**
 - Classify steps as I/O, domain decision, or transform.
 - Do not add more boundaries than necessary.
+- Minimal boundaries must still preserve distinct domain meanings and decision owners; collapsing them into one unit is not simplification.
 
 4. **Primary Flow First**
 - Make the success path readable in one top-down pass.
