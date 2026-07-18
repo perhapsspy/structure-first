@@ -32,7 +32,7 @@ Keep boundaries minimal (only when needed), compose with **Atoms** (small units 
 
 ## Operating Model
 
-Pick one **current unit** and make that unit readable before moving outward.
+Pick the smallest **current unit** responsible for the behavior or rule being changed, not merely where its symptoms or outputs appear, and make that unit readable before moving outward.
 Local changes usually mean function/file. Feature work usually means module/use case. Larger refactors may mean capability/subsystem.
 
 1. **Fix Intent**
