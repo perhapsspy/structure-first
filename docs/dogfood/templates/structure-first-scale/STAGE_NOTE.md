@@ -24,7 +24,7 @@
 
 - why same label was reused: `<reason>`
 
-applier stage는 아래 skill completion evidence 줄을 덧붙인다:
+`applier` 단계는 아래 스킬 완료 근거 항목을 덧붙인다:
 
 - `Observed Problem: ... | no concrete structural problem`
 - `Readable Behavior: imperative flow | state transition | event lifecycle | rule set | dataflow | protocol interaction | other`
