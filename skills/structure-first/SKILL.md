@@ -1,6 +1,6 @@
 ---
 name: structure-first
-description: "Use when a requested code change exposes a concrete legibility problem: relevant behavior or decision ownership is hard to trace, side effects obscure verification, boundaries are multiplying, or a proposed structure may displace rather than reduce complexity. Do not select merely because work is non-trivial; skip when the existing unit already supports a coherent local change, and for mechanical edits or throwaway experiments."
+description: "Use for code generation, feature work, bug fixes, refactoring, and code review when the change adds or reshapes a multi-step flow, state lifecycle, side-effect or decision ownership, cross-unit composition, or a boundary contract, or exposes an existing problem tracing or verifying them. Structural change is optional; skip mechanical edits, throwaway experiments, and coherent local changes already owned and covered by a focused unit."
 ---
 
 # Skill: Structure First
@@ -9,20 +9,17 @@ description: "Use when a requested code change exposes a concrete legibility pro
 
 > **Primary Flow**: a top-down readable main path for logic whose natural form is imperative orchestration
 
-Trace the relevant behavior in the reading form natural to that code, then address the concrete point that makes it hard to understand, change, or verify. A Primary Flow, an Atom, a composition point, or a side-effect boundary is a possible response to an observed problem, not a required result shape.
+Keep the relevant behavior readable in the form natural to that code. Make responsibilities, composition, effects, state, and verification clear enough to understand, change, and verify the requested behavior. A Primary Flow, an Atom, a composition point, or a side-effect boundary is a possible means, not a required result shape.
 
 Prefer changes that remove complexity or isolate it behind a genuinely independent responsibility. Keep the existing structure when it already supports a coherent change, and secure changed behavior with **contract-driven tests** rather than implementation-following tests.
 
 ## Use / Do Not Use
 
-- Use this skill when the requested change reveals behavior that is hard to trace, unclear or duplicated responsibility or decision ownership, effects that obscure verification, multiplying boundaries, or suspected complexity displacement.
-- Use it for structure-focused code review when one of those concrete problems is in scope.
+- Use it for code generation, feature work, bug fixes, refactoring, and code review when the change adds or reshapes a flow, state lifecycle, effect or decision ownership, cross-unit composition, or a boundary contract, or exposes an existing problem tracing or verifying them.
+- Apply it lightly when the current structure is already clear; selecting the skill does not require a structural change.
 - For planning, classification, or scope analysis, keep it as an internal lens rather than a response template.
 - For user-visible bugs or UI malfunctions, characterize the observable behavior first; apply structure work only after the current unit's responsibility for that behavior is clear.
-- Do not select it merely because the task is feature work, a bug fix, refactoring, or otherwise non-trivial.
-- Do not use it when the existing unit already supports a small coherent change and no concrete legibility problem appears.
-- Do not use it for throwaway experiments or one-off exploratory code.
-- Do not use it for tiny changes where structural intervention would be excessive.
+- Skip mechanical edits, throwaway experiments, and coherent local changes that need no structural judgment.
 
 ## Core Bias
 
@@ -40,9 +37,9 @@ Local changes usually mean function/file. Feature work usually means module/use 
 - Follow the behavior in the reading form natural to the code: for example, an imperative flow, state transition, event lifecycle, rule set, dataflow, or protocol boundary.
 - Include call sites, types, tests, documentation, and configuration only when leaving them unchanged would break the requested behavior, a contract, or meaningful verification. Exclude adjacent cleanup.
 
-2. **Name the concrete friction**
-- Identify what currently makes the behavior hard to understand, change, or verify: an unreadable causal path, unclear or duplicated responsibility, hidden effect or failure meaning, multiplying boundary, or another evidenced problem.
-- If the current unit already supports the change coherently, keep its structure.
+2. **Name the structural demand or friction**
+- Identify the flow, state transition or lifecycle, effect or completion ownership, composition, or boundary contract created or reshaped by the change, and any existing problem that makes the behavior hard to trace, change, or verify.
+- If neither exists and the current unit already owns the change and its focused verification, do not expand the structure.
 
 3. **Explore only meaningful structural choices**
 - Compare a local clarification with a structural change only when both are credible.
@@ -95,7 +92,7 @@ Local changes usually mean function/file. Feature work usually means module/use 
 
 ## Risk-Matched Review
 
-Use only the questions relevant to the observed problem:
+Use only the questions relevant to the current change:
 
 - Is the relevant behavior and decision ownership easier to trace?
 - Was complexity removed or isolated behind an independent responsibility, rather than moved into helpers, wrappers, context, state, error channels, or lifecycle?
@@ -109,7 +106,7 @@ Use this template only when structure itself is the point; otherwise answer natu
 When the format is useful, provide these lines:
 
 - `Current Unit:` function/file | module/use case | capability/subsystem
-- `Observed Problem:` the concrete legibility problem, or `none; structure unchanged`
+- `Structural Demand:` the changed flow, state, effect, ownership, composition, or contract; an existing structural problem; or `none; structure unchanged`
 - `Readable Behavior:` the natural causal/read form after the change
 - `Structural Choice:` kept | inlined | merged | deleted | reordered | extracted, with the reason
 - `Tests:` `added ...` or `deferred because ...; next stable unit(s): ...; required contract cases: ...` (include freshness/completion contract when relevant)

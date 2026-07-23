@@ -1,4 +1,4 @@
 interface:
   display_name: "Structure First"
-  short_description: "Explore concrete code legibility problems"
-  default_prompt: "Use $structure-first to trace this behavior and change structure only where it improves legibility."
+  short_description: "Keep code flow, responsibilities, and boundaries readable"
+  default_prompt: "Use $structure-first to make this change readable, well-owned, and protected by behavior contracts."

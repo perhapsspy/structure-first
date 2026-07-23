@@ -4,7 +4,7 @@
 
 ## Summary
 
-`structure-first` examines concrete traceability, responsibility, effect, and boundary problems exposed by a code change. It changes structure only when doing so reduces or usefully isolates total complexity; keeping the current unit is a valid result when it already supports a small coherent change.
+`structure-first` keeps behavior easy to follow through feature work, bug fixes, and refactoring: responsibilities compose clearly, side effects and state have visible boundaries, and contract-focused tests protect changed behavior.
 
 ## Quick Start
 
@@ -17,20 +17,20 @@ npx skills add perhapsspy/structure-first
 **Try It**
 
 ```text
-$structure-first check whether this change exposes a concrete legibility problem
+$structure-first implement this feature with readable flow and clear responsibilities
 ```
 
 ## When to Use
 
-- When current behavior or decision ownership cannot be traced through a coherent path
-- When effect, failure, or state ownership obscures verification
-- When a short top-level flow may have displaced complexity into helpers, wrappers, context, or lifecycle
+- When feature work, bug fixes, or refactoring need code flow and responsibilities handled together
+- When composition, effects, failure meaning, or state ownership need to be clear
+- When changed behavior needs contract-focused verification without unnecessary structure
 
 ## Quick Prompt
 
 ```text
-# When a structural problem is suspected
-$structure-first trace this behavior in its natural reading form and improve structure only where needed
+# When changing a feature or behavior
+$structure-first implement the behavior in its natural reading form and change structure only where needed
 
 # For improving existing code
 $structure-first compare the concrete structural friction with a keep-the-current-structure alternative

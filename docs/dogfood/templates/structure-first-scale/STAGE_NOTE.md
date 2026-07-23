@@ -26,7 +26,7 @@
 
 `applier` 단계는 아래 스킬 완료 근거 항목을 덧붙인다:
 
-- `Observed Problem: ... | no concrete structural problem`
+- `Structural Demand: ... | none; structure unchanged`
 - `Readable Behavior: imperative flow | state transition | event lifecycle | rule set | dataflow | protocol interaction | other`
 - `Structural Choice: keep | local edit | inline | merge | delete | extract | add boundary; why`
 - `Tests: added ... | deferred because ...; next stable responsible unit(s): ...; required contract cases: ...`
