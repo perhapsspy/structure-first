@@ -54,16 +54,16 @@ Local changes usually mean function/file. Feature work usually means module/use 
 4. **Choose by total effect**
 - Select a structural change only when it removes complexity or usefully isolates it behind an independent responsibility.
 - Check whether a shorter top level merely moved complexity into helper chains, wrappers, context objects, configuration, hidden state, error channels, or additional lifecycle.
-- If an unresolved choice affects a public API, architecture, data loss, security, dependencies or cost, or migration, stop for a decision. Otherwise use and report a reversible local assumption.
+- Stop for a decision only when the unresolved choice needs user authority or would make a hard-to-reverse public API, data, security, dependency/cost, or migration commitment. Otherwise use and report a reversible local assumption.
 
 ## Growth and Ownership
 
 - Start with the minimum public I/O/signature for the confirmed responsibility; grow it only when responsibility changes (new external input, mixed semantics, or boundary move).
 - Do not add options, configuration, dependencies, or abstractions for unconfirmed future use; remove code made unused by the current change.
-- One policy, decision, or calculation rule, one owner.
-- One externally visible write path, one owner. If coordinating multiple writers is itself the responsibility, make that coordinator explicit.
-- At larger scales, make the entrypoint, main orchestrator, and decision owners visible.
-- Async boundaries should have one owner for freshness and completion policy.
+- Give each policy, decision, or calculation rule a non-competing resolution path: one owner, an explicit order of composition, or a coordination/conflict-resolution protocol.
+- Make externally visible write ownership discoverable. When multiple writers are intentional, make their coordination or conflict contract visible rather than centralizing them by default.
+- At larger scales, make the relevant entrypoints, composition or coordination, and decision resolution discoverable.
+- Make the freshness and completion resolution path at async boundaries explicit; it may be one owner or a protocol.
 - If rule ownership changes or you introduce an equivalent new path, remove/disable the old one in the same change when possible. Otherwise include a staged migration plan (owner, exit condition).
 - `Decision rule`: repeated predicate, weight, priority, policy, calculation, or key-generation logic that decides behavior.
 - `Equivalent path`: an alternative execution path that yields the same externally observable result.
