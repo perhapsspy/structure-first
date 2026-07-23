@@ -4,7 +4,7 @@
 
 ## Summary
 
-Complex changes should still have a main path that is easy to follow, without small edits causing unexpected side effects elsewhere. `structure-first` organizes code for top-down reading and keeps tests focused on behavior that must remain true.
+`structure-first` examines concrete traceability, responsibility, effect, and boundary problems exposed by a code change. It changes structure only when doing so reduces or usefully isolates total complexity; keeping the current unit is a valid result when it already supports a small coherent change.
 
 ## Quick Start
 
@@ -17,23 +17,23 @@ npx skills add perhapsspy/structure-first
 **Try It**
 
 ```text
-$structure-first implement this feature
+$structure-first check whether this change exposes a concrete legibility problem
 ```
 
 ## When to Use
 
-- When state/condition branching makes top-down reading hard
-- When a small edit unexpectedly changes unrelated behavior
-- When tests break because they follow implementation details too closely
+- When current behavior or decision ownership cannot be traced through a coherent path
+- When effect, failure, or state ownership obscures verification
+- When a short top-level flow may have displaced complexity into helpers, wrappers, context, or lifecycle
 
 ## Quick Prompt
 
 ```text
-# For implementation
-$structure-first implement this feature
+# When a structural problem is suspected
+$structure-first trace this behavior in its natural reading form and improve structure only where needed
 
 # For improving existing code
-$structure-first analyze this code and propose improvements
+$structure-first compare the concrete structural friction with a keep-the-current-structure alternative
 
 ```
 

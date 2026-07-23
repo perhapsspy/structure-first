@@ -2,7 +2,7 @@
 
 ## Goal
 
-현재 scale guidance를 문맥 분리된 멀티 에이전트 단계로 도그푸딩한다.
+현재 structural exploration guidance를 문맥 분리된 멀티 에이전트 단계로 도그푸딩한다.
 
 1. writer가 `structure-first` 영향 없이 `before` 코드를 만든다
 2. applier가 각 케이스를 `structure-first`로 개선한다
@@ -60,7 +60,8 @@ run 목적에 맞게 케이스 셋을 바꾸거나 교체한다.
 - 프롬프트 계약:
   - `structure-first`를 적용한다
   - 수정 전에 현재 작업 단위를 명시한다
-  - 그 단위에서 `Primary Flow`가 읽히도록 필요한 만큼만 개선한다
+  - 구체적인 legibility problem과 자연스러운 읽기 형태를 확인한다
+  - 기존 구조 유지, 국소 변경, no-op을 포함해 필요한 만큼만 개선한다
   - writer와 다른 dedicated applier subagent가 case 하나만 맡는다
 
 ### 3. Reviewers
@@ -116,9 +117,11 @@ run 목적에 맞게 케이스 셋을 바꾸거나 교체한다.
 ## Success Checks
 
 - writer가 `structure-first` vocabulary 없이 plausible baseline 코드를 만들었는가
-- applier가 올바른 current unit을 유지한 채 readable `Primary Flow`를 만들었는가
+- applier가 구체적인 legibility problem과 자연스러운 읽기 형태를 확인했는가
+- 기존 구조 유지, 국소 변경, no-op을 정상 결과로 선택할 수 있었는가
 - 큰 케이스가 function-level over-splitting으로 무너지지 않았는가
-- 모든 케이스의 test status가 명시적인가 (`added` 또는 `deferred` + next stable Atom(s) + contract cases)
+- 복잡도를 helper, wrapper, context, configuration, hidden state, error channel, lifecycle 아래로 옮겨 숨기지 않았는가
+- 모든 케이스의 test status가 명시적인가 (`added` 또는 `deferred` + next stable responsible unit(s) + contract cases)
 - execution-proof metadata (`agent/worker id`, `fork_context`)가 stage artifact에 보이는가
 - stage owner가 실제로 분리되어 있는가(writer/applier/reviewer label distinct)
 - review finding이 막연한 취향 차이가 아니라 구체적인 guidance 개선으로 이어지는가

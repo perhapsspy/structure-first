@@ -1,4 +1,4 @@
 interface:
   display_name: "Structure First"
-  short_description: "Make complex code changes easier to follow safely"
-  default_prompt: "Use $structure-first to implement this with a clear main path and tests that protect behavior."
+  short_description: "Explore concrete code legibility problems"
+  default_prompt: "Use $structure-first to trace this behavior and change structure only where it improves legibility."

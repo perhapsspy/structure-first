@@ -72,7 +72,7 @@ docs/dogfood/runs/<run-name>/
 ## Default Scope
 
 - 기본 코드는 `readability/scale-guidance dogfood`로 본다.
-- test file이 case brief에 없으면 applier는 테스트를 추가하지 않고 `deferred`와 다음 stable Atom, required contract cases를 남긴다.
+- test file이 case brief에 없으면 applier는 테스트를 추가하지 않고 `deferred`와 다음 stable responsible unit, required contract cases를 남긴다.
 - full testing pillar 검증이 목적일 때만 test file을 case set에 포함한다.
 
 ## Change Triage
@@ -88,7 +88,9 @@ docs/dogfood/runs/<run-name>/
 ## Success Checks
 
 - writer가 skill vocabulary 없이 plausible baseline을 만들었는가
-- applier가 current unit을 유지한 채 readable primary flow를 만들었는가
+- applier가 구체적인 legibility problem과 자연스러운 읽기 형태를 확인했는가
+- 기존 구조 유지, 국소 변경, no-op을 정상 결과로 선택할 수 있었는가
+- 복잡도를 helper, wrapper, context, lifecycle 아래로 옮겨 숨기지 않았는가
 - reviewer가 issues/risks first로 판단했는가
 - provenance, execution proof, stage separation이 artifact만으로 읽히는가
 - 결과가 skill 변경인지, pipeline 변경인지, example 수정인지 분류됐는가

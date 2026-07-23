@@ -1,77 +1,60 @@
 ---
 name: structure-first
-description: Use for code generation, feature work, bug fixes, refactoring, and code review where readable primary flow, minimal boundaries, owned decisions, isolated side effects, clear async/state behavior, or contract-focused tests improve correctness and maintainability. Skip only purely mechanical edits, trivial local changes, and throwaway experiments.
+description: "Use when a requested code change exposes a concrete legibility problem: relevant behavior or decision ownership is hard to trace, side effects obscure verification, boundaries are multiplying, or a proposed structure may displace rather than reduce complexity. Do not select merely because work is non-trivial; skip when the existing unit already supports a coherent local change, and for mechanical edits or throwaway experiments."
 ---
 
 # Skill: Structure First
 
 ## Purpose
 
-> **Primary Flow**: the top-down readable main path that orchestrates the logic
+> **Primary Flow**: a top-down readable main path for logic whose natural form is imperative orchestration
 
-When generating, refactoring, or reviewing code, prioritize a **readable success path (Primary Flow)** first.
-Keep boundaries minimal (only when needed), compose with **Atoms** (small units with one stable role and clear I/O), and secure stability through
-**contract-driven tests** rather than implementation-following tests.
+Trace the relevant behavior in the reading form natural to that code, then address the concrete point that makes it hard to understand, change, or verify. A Primary Flow, an Atom, a composition point, or a side-effect boundary is a possible response to an observed problem, not a required result shape.
+
+Prefer changes that remove complexity or isolate it behind a genuinely independent responsibility. Keep the existing structure when it already supports a coherent change, and secure changed behavior with **contract-driven tests** rather than implementation-following tests.
 
 ## Use / Do Not Use
 
-- Use this skill for non-trivial code changes when code shape, change boundary, ownership, or risk-matched verification needs deliberate handling, and for structure-focused code review.
+- Use this skill when the requested change reveals behavior that is hard to trace, unclear or duplicated responsibility or decision ownership, effects that obscure verification, multiplying boundaries, or suspected complexity displacement.
+- Use it for structure-focused code review when one of those concrete problems is in scope.
 - For planning, classification, or scope analysis, keep it as an internal lens rather than a response template.
 - For user-visible bugs or UI malfunctions, characterize the observable behavior first; apply structure work only after the current unit's responsibility for that behavior is clear.
-- Use it when code does not read naturally from top to bottom.
-- Use it when function/module splitting becomes excessive and utilities start to spread.
-- Use it when tests are drifting toward implementation-following patterns.
+- Do not select it merely because the task is feature work, a bug fix, refactoring, or otherwise non-trivial.
+- Do not use it when the existing unit already supports a small coherent change and no concrete legibility problem appears.
 - Do not use it for throwaway experiments or one-off exploratory code.
 - Do not use it for tiny changes where structural intervention would be excessive.
 
 ## Core Bias
 
-- Readable flow > structural simplicity > reusability > abstraction
+- Traceable behavior and ownership > structural simplicity > reusability > abstraction
 - Prefer **clarity of the current code** over speculative future needs.
-- Splitting is not a goal; split only when readability clearly improves.
+- Structural change is not a goal. Keeping, inlining, merging, deleting, and extracting are all valid outcomes.
 
 ## Operating Model
 
-Pick the smallest **current unit** responsible for the behavior or rule being changed, not merely where its symptoms or outputs appear, and make that unit readable before moving outward.
+Pick the smallest **current unit** responsible for the behavior or rule being changed, not merely where its symptoms or outputs appear.
 Local changes usually mean function/file. Feature work usually means module/use case. Larger refactors may mean capability/subsystem.
 
-1. **Fix Intent**
-- State the intent of the change/code in one sentence.
-- State the current unit before restructuring: function/file, module/use case, or capability/subsystem.
+1. **Trace the behavior**
+- State the intent and smallest observable completion condition in one sentence.
+- Follow the behavior in the reading form natural to the code: for example, an imperative flow, state transition, event lifecycle, rule set, dataflow, or protocol boundary.
+- Include call sites, types, tests, documentation, and configuration only when leaving them unchanged would break the requested behavior, a contract, or meaningful verification. Exclude adjacent cleanup.
 
-2. **Set the Change Boundary**
-- Name the smallest observable behavior or check that makes the change complete.
-- Include call sites, types, tests, documentation, and configuration when leaving them unchanged would break the requested behavior, a contract or check, or meaningful verification. Exclude adjacent cleanup.
+2. **Name the concrete friction**
+- Identify what currently makes the behavior hard to understand, change, or verify: an unreadable causal path, unclear or duplicated responsibility, hidden effect or failure meaning, multiplying boundary, or another evidenced problem.
+- If the current unit already supports the change coherently, keep its structure.
+
+3. **Explore only meaningful structural choices**
+- Compare a local clarification with a structural change only when both are credible.
+- Treat keeping, inlining, merging, deleting, reordering, and extracting as equal candidates.
+- A Primary Flow may clarify imperative orchestration. An Atom is an independently understandable role whose behavior can change without coordinating unrelated responsibilities; size, purity, and extraction are possible evidence, not requirements.
+- Make composition discoverable at its natural owner. Do not centralize unrelated decisions or lifecycles merely to create one orchestrator.
+- Make effect ownership and failure meaning visible. Isolate an effect at a separate boundary only when doing so materially improves reasoning, verification, retry, or replacement.
+
+4. **Choose by total effect**
+- Select a structural change only when it removes complexity or usefully isolates it behind an independent responsibility.
+- Check whether a shorter top level merely moved complexity into helper chains, wrappers, context objects, configuration, hidden state, error channels, or additional lifecycle.
 - If an unresolved choice affects a public API, architecture, data loss, security, dependencies or cost, or migration, stop for a decision. Otherwise use and report a reversible local assumption.
-
-3. **Minimize Boundaries**
-- Classify steps as I/O, domain decision, or transform.
-- Do not add more boundaries than necessary.
-- Minimal boundaries must still preserve distinct domain meanings and decision owners; collapsing them into one unit is not simplification.
-
-4. **Primary Flow First**
-- Make the success path readable in one top-down pass.
-- Keep branches/exceptions from breaking the main flow (early return or push them downward).
-- A good result often still reads like `normalize -> load -> decide -> return`.
-- When flattening local branch logic, preserve whether rules are cumulative or precedence-ordered.
-
-5. **Extract Atoms**
-- Split when a Primary Flow sentence becomes clearer as a function or child unit.
-- Atoms do one stable job; their I/O should be describable in one line.
-- Prefer pure functions when possible.
-- At function/file scale, stop when splitting no longer clarifies the local flow.
-
-6. **Keep Composition in One Place**
-- Keep orchestration in one place at the current unit.
-- Minimize direct dependencies/calls between Atoms.
-
-7. **Push Side Effects to Boundaries**
-- Gather side effects (I/O, state mutation) at boundaries.
-- Keep inner logic focused on computation and decisions.
-
-8. **Align Read Order**
-- At file level, default to: export/public -> orchestrator -> atoms -> utils for top-down discoverability.
-- If branch narration starts depending on extra intermediate data structures or helper chains, keep more inline or stop descending.
 
 ## Growth and Ownership
 
@@ -87,18 +70,19 @@ Local changes usually mean function/file. Feature work usually means module/use 
 
 ## Testing
 
-- Write **sufficient tests at the most stable Atom level available** whenever possible.
-- Validate **contracts (I/O, invariants, edge cases)** between the current unit and its Atoms/boundaries, not internals.
+- Write **sufficient tests at the most stable responsible unit available** whenever possible.
+- Validate **contracts (I/O, invariants, edge cases)** between the current unit and its owned roles or boundaries, not internals.
 - Match verification to risk and change type: reproduce or characterize bugs before changing them, verify stable behavior before and after refactors, and cover feature success, failure, and relevant boundaries. Narrow the failure before changing several plausible causes; if checks cannot run, state why and name the next useful check.
 - If orchestration or boundary integration is where the risk lives, test the current unit directly.
 - For async or stateful boundaries, test ownership contracts such as stale-result handling, balanced completion, and equivalent-input no-op at the most stable unit that owns them.
-- If tests cannot be added in the current change, say so explicitly and name the next stable Atom(s) plus the required contract cases.
+- If tests cannot be added in the current change, say so explicitly and name the next stable responsible unit(s) plus the required contract cases.
 - Keep test code readable: use `each`/table cases to reduce duplication, allow only small helpers that do not blur structure, and keep each test focused on one core assertion.
 
 ## Anti-Patterns
 
 - If splitting increases argument/state passing, roll it back.
 - Do not split functions/files for appearance only (avoid utility sprawl).
+- Do not shorten the top level by displacing complexity into helper chains, wrappers, context objects, configuration, hidden state, error channels, or additional lifecycle.
 - If names start turning into long explanations, re-check boundaries.
 - Avoid adding abstractions/layers for assumed future reuse.
 - Avoid over-abstracted tests and helper sprawl.
@@ -109,30 +93,26 @@ Local changes usually mean function/file. Feature work usually means module/use 
 - Do not create self-feedback loops where a unit reads from an input/update path and writes back into that same path.
 - Do not keep new and legacy equivalent paths in parallel without a staged migration plan (owner, exit condition).
 
-## Final Gates
+## Risk-Matched Review
 
-- Can the success path be seen in one top-down read?
-- Is the current unit stated clearly and still the right unit for this change?
-- Does the change boundary include necessary follow-ups without adjacent cleanup, and is each high-risk choice settled or explicitly blocked?
-- At function/file scale, is the flow still shallow enough without extra intermediate data structures or helper chains narrating the branches?
-- Does splitting reflect real responsibility/boundary changes?
-- Can each Atom's I/O be explained in one line?
-- Are side effects concentrated at boundaries?
-- Are tests contract-focused and concise?
-- At capability/subsystem scale, can you name the entrypoint, main orchestrator, and decision owners?
-- If more structure work remains across units, is the next re-entry point clear before ending this pass?
-- Are parameter growth and old-path handling (cleanup or staged migration) justified and complete?
+Use only the questions relevant to the observed problem:
+
+- Is the relevant behavior and decision ownership easier to trace?
+- Was complexity removed or isolated behind an independent responsibility, rather than moved into helpers, wrappers, context, state, error channels, or lifecycle?
+- Does each new boundary correspond to a real responsibility, effect, or contract?
+- Does verification protect the changed observable behavior and contracts?
 
 ## Optional Completion Evidence
 
 Use this template only when structure itself is the point; otherwise answer naturally.
 
-When the format is useful, provide these four lines:
+When the format is useful, provide these lines:
 
 - `Current Unit:` function/file | module/use case | capability/subsystem
-- `Primary Flow:` top-down in 3-6 lines
-- `Boundaries:` list of I/O boundaries
-- `Tests:` `added ...` or `deferred because ...; next stable Atom(s): ...; required contract cases: ...` (include freshness/completion contract when relevant)
+- `Observed Problem:` the concrete legibility problem, or `none; structure unchanged`
+- `Readable Behavior:` the natural causal/read form after the change
+- `Structural Choice:` kept | inlined | merged | deleted | reordered | extracted, with the reason
+- `Tests:` `added ...` or `deferred because ...; next stable unit(s): ...; required contract cases: ...` (include freshness/completion contract when relevant)
 
 For refactoring work where rule ownership changed, also provide:
 

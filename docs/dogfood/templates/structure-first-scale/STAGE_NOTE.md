@@ -26,9 +26,9 @@
 
 applier stage는 아래 skill completion evidence 줄을 덧붙인다:
 
-- `Current Unit: ...`
-- `Primary Flow: ...`
-- `Boundaries: ...`
-- `Tests: added ... | deferred because ...; next stable Atom(s): ...; required contract cases: ...`
+- `Observed Problem: ... | no concrete structural problem`
+- `Readable Behavior: imperative flow | state transition | event lifecycle | rule set | dataflow | protocol interaction | other`
+- `Structural Choice: keep | local edit | inline | merge | delete | extract | add boundary; why`
+- `Tests: added ... | deferred because ...; next stable responsible unit(s): ...; required contract cases: ...`
 - `Decision Ownership: rule -> owner unit; duplicated owner removed? yes/no` when ownership changed
 - `Refactor Check: ...` when refactoring work requires it
