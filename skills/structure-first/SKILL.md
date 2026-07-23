@@ -1,6 +1,6 @@
 ---
 name: structure-first
-description: "Use for code generation, feature work, bug fixes, refactoring, and code review when the change adds or reshapes a multi-step flow, state lifecycle, side-effect or decision ownership, cross-unit composition, or a boundary contract, or exposes an existing problem tracing or verifying them. Structural change is optional; skip mechanical edits, throwaway experiments, and coherent local changes already owned and covered by a focused unit."
+description: "Use for code generation, feature work, bug fixes, refactoring, and code review when a change creates or reshapes a multi-step flow, state lifecycle, side-effect or decision ownership, cross-unit composition, or boundary contract. Also use it when an existing structural problem makes those elements hard to trace or verify. Structural change is optional. Mechanical edits, throwaway experiments, and coherent local changes stay with their current owner and focused verification."
 ---
 
 # Skill: Structure First
@@ -9,23 +9,23 @@ description: "Use for code generation, feature work, bug fixes, refactoring, and
 
 > **Primary Flow**: a top-down readable main path for logic whose natural form is imperative orchestration
 
-Keep the relevant behavior readable in the form natural to that code. Make responsibilities, composition, effects, state, and verification clear enough to understand, change, and verify the requested behavior. A Primary Flow, an Atom, a composition point, or a side-effect boundary is a possible means, not a required result shape.
+Keep the relevant behavior readable in the form natural to that code. Make responsibilities, composition, effects, state, and verification clear enough to understand, change, and verify the requested behavior. Use a Primary Flow, an Atom, a composition point, or a side-effect boundary when it makes the relevant behavior clearer.
 
 Prefer changes that remove complexity or isolate it behind a genuinely independent responsibility. Keep the existing structure when it already supports a coherent change, and secure changed behavior with **contract-driven tests** rather than implementation-following tests.
 
-## Use / Do Not Use
+## Application
 
-- Use it for code generation, feature work, bug fixes, refactoring, and code review when the change adds or reshapes a flow, state lifecycle, effect or decision ownership, cross-unit composition, or a boundary contract, or exposes an existing problem tracing or verifying them.
-- Apply it lightly when the current structure is already clear; selecting the skill does not require a structural change.
+- Use it for code generation, feature work, bug fixes, refactoring, and code review when a change creates or reshapes a flow, state lifecycle, effect or decision ownership, cross-unit composition, or boundary contract. Existing structural problems that obscure those elements also call for this skill.
+- Apply it lightly when the current structure is already clear.
 - For planning, classification, or scope analysis, keep it as an internal lens rather than a response template.
 - For user-visible bugs or UI malfunctions, characterize the observable behavior first; apply structure work only after the current unit's responsibility for that behavior is clear.
-- Skip mechanical edits, throwaway experiments, and coherent local changes that need no structural judgment.
+- Keep mechanical edits, throwaway experiments, and coherent local changes with their current owner and focused verification.
 
 ## Core Bias
 
 - Traceable behavior and ownership > structural simplicity > reusability > abstraction
 - Prefer **clarity of the current code** over speculative future needs.
-- Structural change is not a goal. Keeping, inlining, merging, deleting, and extracting are all valid outcomes.
+- Keeping, inlining, merging, deleting, reordering, and extracting are all valid outcomes.
 
 ## Operating Model
 
@@ -38,20 +38,21 @@ Local changes usually mean function/file. Feature work usually means module/use 
 - Include call sites, types, tests, documentation, and configuration only when leaving them unchanged would break the requested behavior, a contract, or meaningful verification. Exclude adjacent cleanup.
 
 2. **Name the structural demand or friction**
-- Identify the flow, state transition or lifecycle, effect or completion ownership, composition, or boundary contract created or reshaped by the change, and any existing problem that makes the behavior hard to trace, change, or verify.
-- If neither exists and the current unit already owns the change and its focused verification, do not expand the structure.
+- Name the structural demand created or reshaped by the change. It may involve a flow, state transition or lifecycle, effect or completion ownership, composition, or boundary contract.
+- Also name any existing problem that makes the behavior hard to trace, change, or verify.
+- When the current unit already owns the change and its focused verification, keep the work within that unit.
 
 3. **Explore only meaningful structural choices**
 - Compare a local clarification with a structural change only when both are credible.
 - Treat keeping, inlining, merging, deleting, reordering, and extracting as equal candidates.
 - A Primary Flow may clarify imperative orchestration. An Atom is an independently understandable role whose behavior can change without coordinating unrelated responsibilities; size, purity, and extraction are possible evidence, not requirements.
-- Make composition discoverable at its natural owner. Do not centralize unrelated decisions or lifecycles merely to create one orchestrator.
+- Make composition discoverable at its natural owner and keep unrelated decisions or lifecycles with their own owners.
 - Make effect ownership and failure meaning visible. Isolate an effect at a separate boundary only when doing so materially improves reasoning, verification, retry, or replacement.
 
 4. **Choose by total effect**
-- Select a structural change only when it removes complexity or usefully isolates it behind an independent responsibility.
-- Check whether a shorter top level merely moved complexity into helper chains, wrappers, context objects, configuration, hidden state, error channels, or additional lifecycle.
-- Stop for a decision only when the unresolved choice needs user authority or would make a hard-to-reverse public API, data, security, dependency/cost, or migration commitment. Otherwise use and report a reversible local assumption.
+- Select a structural change when it removes complexity or usefully isolates it behind an independent responsibility.
+- Check the complete path through helper chains, wrappers, context objects, configuration, state, error channels, and lifecycle to confirm where complexity now lives.
+- Request a user decision when the unresolved choice needs user authority or would make a hard-to-reverse public API, data, security, dependency/cost, or migration commitment. Use and report a reversible local assumption for other unresolved choices.
 
 ## Growth and Ownership
 
