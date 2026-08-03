@@ -17,7 +17,7 @@ Unsettled product purpose belongs to purpose-fit design; cross-representation me
 
 Choose the smallest **current unit** that owns the behavior or rule, not merely its symptom or output. State the intent and smallest observable completion condition, then trace the natural reading form: imperative flow, state transition, event lifecycle, rule set, dataflow, or protocol boundary. Include callers, types, tests, docs, and config only when leaving them unchanged would break the requested behavior, its contract, or meaningful verification.
 
-Name the structural demand created or reshaped by the change—flow, lifecycle, effect/completion ownership, composition, or boundary contract—and any existing friction that blocks tracing or testing. If the current unit already owns the change and focused verification, stay within it.
+Name the structural demand created or reshaped by the change—flow, lifecycle, effect/completion ownership, composition, or boundary contract—and any existing friction that blocks tracing or testing. Use focused verification to keep work within the current unit. Reopen only the smallest implicated unit when evidence shows that another unit owns a decision, write, effect, or completion rule.
 
 Compare local clarification with structural change only when both are credible. A **Primary Flow** is the top-down readable main path for imperative orchestration; keep branches and exceptions from obscuring its main causal path. An **Atom** is an independently understandable role whose behavior can change without coordinating unrelated responsibilities. Neither is a required extraction.
 
@@ -37,10 +37,10 @@ Ask for a user decision when an unresolved choice needs user authority or create
 
 ## Verification
 
-Test sufficient observable contracts at the most stable responsible unit: I/O, invariants, edge cases, and owned boundary behavior—not helper internals. Test orchestration or integration at the current unit when that is where risk lives.
+Test sufficient observable contracts at the most stable responsible unit: I/O, invariants, edge cases, and owned boundary behavior—not helper internals. For material claims across identity, authoritative data, external writes, or runtime/async boundaries, use the nearest safe witness from that boundary’s owner without automatically requiring production or full end-to-end checks. Test orchestration or integration at the current unit when that is where risk lives.
 
 Match checks to risk and change type. Reproduce or characterize a bug before fixing it; preserve stable behavior across refactors; cover feature success, failure, and relevant boundaries. Narrow the failure before changing several plausible causes.
 
-For async or stateful boundaries, verify stale-result handling, balanced completion, and equivalent-input no-op at the unit that owns those contracts. Keep tests readable and focused. If a check cannot run, state why and name the next useful check. If tests cannot be added, state why and name the next stable responsible unit and required contract cases.
+For async or stateful boundaries, verify stale-result handling, balanced completion, and equivalent-input no-op at the unit that owns those contracts. Keep tests readable and focused. If no safe witness is available, leave the boundary unresolved and name the next check, responsible unit, and cases; local tests do not close it.
 
 Report structural evidence only when it helps the task: current unit, structural demand, chosen outcome, decision ownership or migration status, and verification. Do not force a template onto planning or simple local work.
