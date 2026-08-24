@@ -11,7 +11,7 @@ Make the requested behavior readable, changeable, and verifiable in the form nat
 
 Keep mechanical edits, throwaway experiments, and coherent local changes with their current owner. For user-visible bugs, establish the observable failure and its responsible current unit before restructuring.
 
-Unsettled product purpose belongs to purpose-fit design; cross-representation meaning ownership to semantic boundary design; pure async interaction and freshness to interactive-state flow. Use those workflows when available. In a standalone installation, state the missing prerequisite and resolve it only within explicit user authority. Consume settled contracts without reopening them; if one remains unsettled, do not invent its implementation mechanics here.
+Treat settled decisions about product purpose, domain meaning, and async interaction or freshness as inputs to structural work, not questions to reopen. If one remains unsettled, do not invent its implementation mechanics here.
 
 ## Structural Contract
 
@@ -30,17 +30,17 @@ Ask for a user decision when an unresolved choice needs user authority or create
 ## Ownership and Migration
 
 - Start public I/O and signatures at the minimum confirmed responsibility. Grow them only for a real new external input, mixed meaning, or boundary move; do not add future-use options, configuration, dependencies, or abstractions.
-- Give each policy, decision, calculation, priority, or key-generation rule a non-competing resolution path: one owner, explicit composition order, or a coordination/conflict protocol.
+- Give each policy, decision, calculation, priority, or key-generation rule a non-competing resolution path: one owner, explicit composition order, or a coordination/conflict protocol. When one settled domain meaning is carried through multiple representations and drift is a material risk, keep its interpretation with the owning unit. Other units may transport, project, or apply an explicitly scoped compatibility translation, but must not independently infer or reinterpret that meaning.
 - Make externally visible write ownership discoverable. Allow multiple writers only when coordinating them is an explicit responsibility with a discoverable owner or protocol; otherwise keep one writer. Do not centralize intentional writers automatically.
 - At async boundaries, make freshness and completion resolution explicit as an owner or protocol. Do not mirror upstream boundary state into local mutable state without explicit ownership/reset semantics, or create a self-feedback loop through the same input/update path.
 - Remove code made unused by the change. When rule ownership moves or an equivalent execution path is introduced, remove or disable the old path in the same change when possible; otherwise provide a staged migration owner and exit condition.
 
 ## Verification
 
-Test sufficient observable contracts at the most stable responsible unit: I/O, invariants, edge cases, and owned boundary behavior—not helper internals. For material claims across identity, authoritative data, external writes, or runtime/async boundaries, use the nearest safe witness from that boundary’s owner without automatically requiring production or full end-to-end checks. Test orchestration or integration at the current unit when that is where risk lives.
+Test sufficient observable contracts at the most stable responsible unit: I/O, invariants, edge cases, and owned boundary behavior—not helper internals. When cross-representation drift of a settled meaning is material, include a representative case at the first point where another unit could reinterpret it. For material claims across identity, authoritative data, cross-representation meaning, external writes, or runtime/async boundaries, use the nearest safe witness from that boundary’s owner without automatically requiring production or full end-to-end checks. Test orchestration or integration at the current unit when that is where risk lives.
 
 Match checks to risk and change type. Reproduce or characterize a bug before fixing it; preserve stable behavior across refactors; cover feature success, failure, and relevant boundaries. Narrow the failure before changing several plausible causes.
 
-For async or stateful boundaries, verify stale-result handling, balanced completion, and equivalent-input no-op at the unit that owns those contracts. Keep tests readable and focused. If no safe witness is available, leave the boundary unresolved and name the next check, responsible unit, and cases; local tests do not close it.
+For async or stateful boundaries, verify stale-result handling, balanced completion, and equivalent-input no-op at the unit that owns those contracts. Keep tests readable and focused. If no safe witness is available or current witnesses conflict, leave the boundary unresolved and name the next check, responsible unit, and cases; local tests do not close it.
 
 Report structural evidence only when it helps the task: current unit, structural demand, chosen outcome, decision ownership or migration status, and verification. Do not force a template onto planning or simple local work.

@@ -9,7 +9,7 @@
 
 기계적 수정, 일회성 실험, 일관된 국소 변경은 현재 owner에 둔다. 사용자에게 보이는 버그는 구조를 바꾸기 전에 관찰 가능한 실패와 이를 책임지는 현재 단위를 확인한다.
 
-미확정 제품 목적은 purpose-fit design, representation 사이 의미 소유권은 semantic boundary design, 순수 async interaction·freshness는 interactive-state flow에 둔다. 해당 workflow가 있으면 사용한다. 독립 설치라면 빠진 선행 계약을 밝히고 명시적 사용자 권한 안에서만 해결한다. 확정 계약을 다시 열지 않으며 미확정 계약의 구현 메커니즘을 여기서 만들지 않는다.
+제품 목적, 도메인 의미, async interaction·freshness에 관한 확정 판단은 구조 작업의 입력으로 사용하고 다시 열지 않는다. 하나라도 미확정이면 그 구현 메커니즘을 여기서 만들지 않는다.
 
 ## 구조 계약
 
@@ -28,17 +28,17 @@
 ## 소유권과 Migration
 
 - 공개 I/O와 signature는 확정된 최소 책임으로 시작한다. 실제 새 외부 입력, 의미 혼합, 경계 이동이 있을 때만 키우고 미래 사용을 위한 option, config, dependency, abstraction을 추가하지 않는다.
-- policy, decision, calculation, priority, key-generation rule마다 경쟁하지 않는 결정 경로 하나를 둔다. 단일 owner, 명시적 조합 순서, 조정·충돌 규약일 수 있다.
+- policy, decision, calculation, priority, key-generation rule마다 경쟁하지 않는 결정 경로 하나를 둔다. 단일 owner, 명시적 조합 순서, 조정·충돌 규약일 수 있다. 하나의 확정된 도메인 의미가 여러 representation을 거치며 실질적인 drift 위험이 있으면 해석은 owner에 둔다. 다른 단위는 transport, projection, 또는 범위가 명시된 compatibility translation만 수행하며 그 의미를 독립적으로 추론하거나 재해석하지 않는다.
 - 외부에서 관찰되는 write owner를 찾을 수 있게 한다. 여러 writer는 조정 자체가 명시적 책임이고 찾을 수 있는 owner나 protocol이 있을 때만 허용한다. 의도된 writer를 자동으로 중앙화하지 않는다.
 - async 경계의 freshness와 completion 결정 경로를 owner 또는 protocol로 명시한다. 소유권·reset 의미 없이 상위 경계 상태를 local mutable state로 복제하거나 같은 input/update 경로에 자기 되먹임을 만들지 않는다.
 - 이번 변경으로 쓰이지 않게 된 코드를 제거한다. rule owner가 이동하거나 같은 외부 결과를 내는 새 경로가 생기면 같은 변경에서 구경로를 제거·비활성화하고, 어렵다면 staged migration owner와 종료 조건을 둔다.
 
 ## 검증
 
-가장 안정적인 책임 단위에서 충분한 관찰 계약—입출력, 불변조건, 경계값, 소유 경계 동작—을 검증하고 helper 내부 구현은 고정하지 않는다. identity, 정본 데이터, 외부 write, runtime/async 경계를 넘는 중요한 주장에는 해당 경계 owner의 가장 가까운 안전한 증거를 사용하고, production이나 전체 end-to-end 검증까지 자동으로 요구하지 않는다. orchestration이나 integration이 위험을 소유하면 현재 단위를 직접 테스트한다.
+가장 안정적인 책임 단위에서 충분한 관찰 계약—입출력, 불변조건, 경계값, 소유 경계 동작—을 검증하고 helper 내부 구현은 고정하지 않는다. 확정 의미가 representation 사이에서 달라질 실질적 위험이 있으면 다른 단위가 이를 다시 해석할 수 있는 최초 지점에 대표 사례를 포함한다. identity, 정본 데이터, representation 사이 의미, 외부 write, runtime/async 경계를 넘는 중요한 주장에는 해당 경계 owner의 가장 가까운 안전한 증거를 사용하고, production이나 전체 end-to-end 검증까지 자동으로 요구하지 않는다. orchestration이나 integration이 위험을 소유하면 현재 단위를 직접 테스트한다.
 
 위험과 변경 종류에 맞춘다. 버그는 수정 전에 재현하거나 현재 동작을 규명하고, refactor는 전후 안정 동작을 지키며, feature는 성공·실패·관련 경계를 검증한다. 여러 가능한 원인을 바꾸기 전에 실패를 좁힌다.
 
-async·stateful 경계에서는 stale result, balanced completion, equivalent-input no-op를 해당 계약 owner에서 검증한다. 테스트는 읽기 쉽고 한 핵심 주장에 집중한다. 안전한 증거가 없으면 경계를 미해결로 두고 다음 검사·책임 단위·사례를 밝힌다. 국소 테스트만으로 닫지 않는다.
+async·stateful 경계에서는 stale result, balanced completion, equivalent-input no-op를 해당 계약 owner에서 검증한다. 테스트는 읽기 쉽고 한 핵심 주장에 집중한다. 안전한 증거가 없거나 현재 증거가 충돌하면 경계를 미해결로 두고 다음 검사·책임 단위·사례를 밝힌다. 국소 테스트만으로 닫지 않는다.
 
 현재 단위, 구조 요구, 선택한 결과, 판단 소유권·migration 상태, 검증은 task에 도움이 될 때만 보고한다. 계획이나 단순 국소 작업에 템플릿을 강제하지 않는다.
