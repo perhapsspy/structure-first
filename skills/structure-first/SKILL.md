@@ -18,6 +18,8 @@ Find the owner. Trace the flow. Change the smallest responsible unit. Verify the
 
 Keeping, inlining, merging, deleting, reordering, extracting, and making no structural change are all valid outcomes. Do not add future-use options, configuration, dependencies, wrappers, or abstractions.
 
+For performance work, measure input scale, repeated operations, materialization, and phase timings in the existing reproduction. Remove the dominant avoidable work at its owner, then compare the same reproduction and observable behavior.
+
 ## Required Detail
 
 Read [Structural Boundaries](references/structural-boundaries.md) before changing public I/O; decision, writer, effect, or completion ownership; async/state lifecycle; representation meaning; or migration paths.

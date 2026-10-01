@@ -13,4 +13,8 @@ Match checks to risk and change type:
 - Cover feature success, failure, and relevant boundaries.
 - At async or stateful boundaries, verify stale-result handling, balanced completion, and equivalent-input no-op at the unit that owns those contracts.
 
+For deployment, resolve the existing credential/configuration owner and exact target, effects, and recovery path before applying. Verify the user’s access path in the deployed environment; local or fixture success does not close that boundary.
+
+Derive completion claims from check results: tested scope, source/target identity, environment, fixture dependencies, and unmet acceptance criteria. Reuse valid evidence rather than adding a fixed review chain.
+
 Keep tests readable and focused. If no safe witness is available or current witnesses conflict, leave the boundary unresolved. Name the next check, responsible unit, and required cases; local tests do not close it.
