@@ -2,7 +2,7 @@
 
 Use this detail when risk lives at a boundary or the runtime contract needs evidence beyond a local helper.
 
-Test sufficient observable contracts at the most stable responsible unit: I/O, invariants, edge cases, and owned boundary behavior. Do not lock down helper internals. Test orchestration or integration at the current unit when that is where risk lives.
+Test observable contracts at the most stable responsible unit, not helper internals. Where a traced guard or evidence dependency may not match the contract, choose a focused case that makes the resulting wrong decision observable. If that case depends on evidence or state passing between units, establish its relevant precondition through their actual composition rather than inferring coverage from separate passing tests. Include a valid contrasting case when needed to rule out blanket rejection or suppressed output.
 
 When cross-representation drift of a settled meaning is material, include a representative case at the first point where another unit could reinterpret it. For material claims across identity, authoritative data, cross-representation meaning, external writes, or runtime/async boundaries, use the nearest safe witness from that boundary’s owner. Do not automatically require production or full end-to-end checks.
 
