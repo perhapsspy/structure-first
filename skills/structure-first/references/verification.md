@@ -11,7 +11,7 @@ Match checks to risk and change type:
 - Reproduce or characterize a bug before fixing it. Narrow the failure before changing several plausible causes.
 - Preserve stable behavior across a refactor.
 - Cover feature success, failure, and relevant boundaries.
-- At async or stateful boundaries, verify stale-result handling, balanced completion, and equivalent-input no-op at the unit that owns those contracts.
+- At async or stateful boundaries, verify the current contracts affected by the change at their owning unit. Stale-result handling, balanced completion, and equivalent-input no-op are candidate checks only where that behavior is required.
 
 For deployment, resolve the existing credential/configuration owner and exact target, effects, and recovery path before applying. Verify the user’s access path in the deployed environment; local or fixture success does not close that boundary.
 
