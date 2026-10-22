@@ -15,6 +15,8 @@ Match checks to risk and change type:
 
 For deployment, resolve the existing credential/configuration owner and exact target, effects, and recovery path before applying. Verify the user’s access path in the deployed environment; local or fixture success does not close that boundary.
 
-Derive completion claims from check results: tested scope, source/target identity, environment, fixture dependencies, and unmet acceptance criteria. Reuse valid evidence rather than adding a fixed review chain.
+When recording or materially extending a finding, compare its consequential claims with the actual witness inputs and observations. If reproduction is required or chosen, select the supported contract violation that determines the finding's significance, rather than an easier symptom sharing its cause. If the witness lacks that consequence's qualifying facts, adapt and safely execute it before optional broader checks, reusing supported setup.
+
+Source reasoning may suffice for further consequences whose material premises and path are established. Execution is still needed when explicitly required or when a decision-relevant boundary premise remains unsettled. Do not require a run for every implication or field, or rebuild an undisputed producer chain. Distinguish source-backed conclusions from executed results and retain unavailable required checks as unmet. Derive completion claims from tested scope, source/target identity, environment, fixture dependencies, and unmet acceptance criteria. Reuse valid evidence.
 
 Keep tests readable and focused. If no safe witness is available or current witnesses conflict, leave the boundary unresolved. Name the next check, responsible unit, and required cases; local tests do not close it.

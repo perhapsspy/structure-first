@@ -9,10 +9,10 @@ Find the owner. Trace the flow. Change the smallest responsible unit. Verify the
 
 ## Runtime Contract
 
+For broad bug reviews across several owners, follow [Reviewing Across Owners](references/reviewing.md). Use the first allocation for contract-counterexample investigation and focused checks, then checkpoint and load the deferred challenge. Complete both phases and integration within this invocation and the original budget. Do not preload the challenge or depend on another message or agent to switch phases.
+
 1. Choose the smallest **current unit** that owns the behavior or rule, not merely its symptom or output. State the intent and minimum observable completion condition. For a bug, establish the observable failure before restructuring.
 2. Scope the trace by the affected contract, not merely the current branch. Identify which supported entries and outputs that contract covers, and compare their guards and input or state dependencies with its required preconditions. Trace the needed path from a supported entry through its guards and source state to a state change, external effect, or public result, including read-only results and the conditions that suppress them. Include types, tests, docs, and config only when leaving them unchanged would break the behavior, contract, or meaningful verification.
-
-   For broad bug reviews across several owners, follow [Reviewing Across Owners](references/reviewing.md): draft the investigation, then challenge its evidence in a separate review invocation before final integration. Keep both phases inside the current review budget and reuse the same review context.
 
 3. Name the structural demand—flow, lifecycle, decision/effect/completion ownership, composition, migration, or boundary contract—and the friction that blocks tracing or testing.
 4. Prefer focused local clarification. Change structure only when it removes total complexity or isolates an independently changeable responsibility; a shorter top level is not better when helpers, wrappers, context, state, errors, or lifecycle merely hide the complexity.
